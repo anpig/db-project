@@ -1,4 +1,12 @@
-<!doctype html>
+<?php
+  session_start();
+  // $_SESSION['logged'] = true; // debug use only
+	if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
+	  header('Location: .');
+    die();
+	}
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,7 +29,7 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand " href="#">WebSiteName</a>
+        <a class="navbar-brand " href="#">ABerEats</a>
       </div>
 
     </div>
@@ -40,7 +48,7 @@
         <h3>Profile</h3>
         <div class="row">
           <div class="col-xs-12">
-            Accouont: sherry, user, PhoneNumber: 0912345678,  location: 24.786944626633865, 120.99753981198887
+            Account: sherry, user, PhoneNumber: 0912345678,  location: 24.786944626633865, 120.99753981198887
             
             <button type="button " style="margin-left: 5px;" class=" btn btn-info " data-toggle="modal"
             data-target="#location">edit location</button>

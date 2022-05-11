@@ -63,42 +63,42 @@
 					
 
 					<!-- Start Sign In Form -->
-					<form action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+					<form action="register.php" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
 						<h2>Sign Up</h2>
 						<!-- <div class="form-group">
 							<div class="alert alert-success" role="alert">Your info has been saved.</div>
 						</div> -->
 						<div class="form-group">
 							<label for="name" class="sr-only">Name</label>
-							<input type="text" class="form-control" id="name" placeholder="Name" autocomplete="off">
+							<input type="text" class="form-control" name="name" id="name" placeholder="Name" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="name" class="sr-only">phonenumber</label>
-							<input type="text" class="form-control" id="phonenumber" placeholder="PhoneNumber" autocomplete="off">
+							<input type="text" class="form-control" name="phonenumber" id="phonenumber" placeholder="PhoneNumber" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="Account" class="sr-only">Account</label>
-							<input type="text" class="form-control" id="Account" placeholder="Account" autocomplete="off">
+							<input type="text" class="form-control" name="Account" id="Account" placeholder="Account" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off">
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="re-password" class="sr-only">Re-type Password</label>
-							<input type="password" class="form-control" id="re-password" placeholder="Re-type Password" autocomplete="off">
+							<input type="password" class="form-control" name="re-password" id="re-password" placeholder="Re-type Password" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="latitude" class="sr-only">latitude</label>
-							<input type="text" class="form-control" id="latitude" placeholder="Latitude" autocomplete="off">
+							<input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="longitude" class="sr-only">longitude</label>
-							<input type="text" class="form-control" id="longitude" placeholder="longitude" autocomplete="off">
+							<input type="text" class="form-control" name="longitude" id="longitude" placeholder="longitude" autocomplete="off">
 						</div>
 				
 						<div class="form-group">
-							<p>Already registered? <a href="index.html">Sign In</a></p>
+							<p>Already registered? <a href="index.php">Sign In</a></p>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Sign Up" class="btn btn-primary">

@@ -79,7 +79,7 @@
 					<form action="login.php" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
 						<h2>Sign In</h2>
 						<div class="form-group">
-							<label for="Account" class="sr-only">Account</label>
+							<label for="account" class="sr-only">Account</label>
 							<input type="text" class="form-control" name="Account" id="Account" placeholder="Account" autocomplete="off">
 						</div>
 						<div class="form-group">

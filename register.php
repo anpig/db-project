@@ -3,9 +3,13 @@
     <body>
 <?php
 session_start();
-$_SESSION['logged']=false;
+$_SESSION['logged'] = false;
+$dbservername='localhost';
+$dbname='db-project';
+$dbusername='db';
+$dbpassword='db';
 try {
-    if (empty($_POST['name']) || empty($_POST['phonenumber']) || empty($_POST['Account']) || empty($_POST['password']) || empty($_POST['re-password']) || empty($_POST['latitude']) || empty($_POST['longitude'])) {
+    if (empty($_POST['name']) || empty($_POST['phonenumber']) || empty($_POST['account']) || empty($_POST['password']) || empty($_POST['re-password']) || empty($_POST['latitude']) || empty($_POST['longitude'])) {
         $err_message="";
         if (empty($_POST['name'])) $err_message=$err_message."NAME ";
         if (empty($_POST['phonenumber'])) $err_message=$err_message."PHONENUMBER ";
@@ -30,10 +34,43 @@ try {
         throw new Exception("輸入格式不對：$err_message");
     }
     else {
-        $db = new PDO("mysql:host=localhost;dbname=db-project", $dbusername, $dbpassword);
-        echo "<script>alert(\"Registered Successfully.\"); window.location.replace(\"index.php\");</script>";
-    
+        $name = $_POST['name'];
+        $phonenumber = $_POST['phonenumber'];
+        $account = $_POST['account'];
+        $password = $_POST['password'];
+        $re_password = $_POST['re-password'];
+        $latitude = $_POST['latitude'];
+        $longitude = $_POST['longitude'];
+
+        $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
+        $sql = $db->prepare("select account from user where account=:account");
+        $sql->execute(array('account' => $account));
+
+        if ($sql->rowCount() == 0) {
+            $salt = strval(rand(1000,9999));
+            $hashvalue = hash('sha256', $salt.$password);
+            $sql = $db->prepare("
+                insert into user (account, password, salt, name, location_longitude, location_latitude, phone_number)
+                values (:account, :password, :salt, :name, :location_longitude, :location_latitude, :phone_number)
+            ");
+            $sql->execute(
+                array(
+                    'account' => $account,
+                    'password' => $hashvalue,
+                    'salt' => $salt,
+                    'name' => $name,
+                    'location_longitude' => $longitude,
+                    'location_latitude' => $latitude,
+                    'phone_number' => $phonenumber
+                )
+            );
+            echo "<script>alert(\"Registered Successfully!\"); window.location.replace(\"index.php\");</script>";
+            exit();
+        }
+        else throw new Exception("Account already exists!");
     }
+
 } catch (Exception $e) {
     $msg=$e->getMessage();
     session_unset();

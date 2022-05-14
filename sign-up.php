@@ -78,7 +78,7 @@
 						</div>
 						<div class="form-group">
 							<label for="Account" class="sr-only">Account</label>
-							<input type="text" class="form-control" name="Account" id="Account" placeholder="Account" autocomplete="off">
+							<input type="text" class="form-control" name="account" id="Account" placeholder="Account" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">Password</label>

@@ -1,9 +1,10 @@
 <?php
 	session_start();
-	session_unset();
-	session_destroy();
-	$_SESSION['logged'] = false;
+	// session_unset();
+	// session_destroy();
+	// $_SESSION['logged'] = false;
 	// $_SESSION['logged'] = true; //debug use
+	if (!isset($_SESSION['logged'])) $_SESSION['logged'] = false;
 	if ($_SESSION['logged'] == true) {
 		header('Location: nav.php');
 		die();
@@ -79,12 +80,12 @@
 					<form action="login.php" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
 						<h2>Sign In</h2>
 						<div class="form-group">
-							<label for="Account" class="sr-only">Account</label>
-							<input type="text" class="form-control" name="Account" id="Account" placeholder="Account" autocomplete="off">
+							<label for="account" class="sr-only">Account</label>
+							<input type="text" class="form-control" name="account" id="Account" placeholder="Account" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">Password</label>
-							<input type="password" class="form-control" name="Password" id="Password" placeholder="Password" autocomplete="off">
+							<input type="password" class="form-control" name="password" id="Password" placeholder="Password" autocomplete="off">
 						</div>
 				
 						<div class="form-group">

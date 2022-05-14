@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-05-10 08:52:43
+-- 產生時間： 2022-05-14 15:21:48
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -103,9 +103,10 @@ CREATE TABLE `transaction` (
 
 CREATE TABLE `user` (
   `UID` int(11) NOT NULL,
-  `username` varchar(16) NOT NULL,
-  `password` int(11) NOT NULL,
-  `display_name` varchar(32) NOT NULL,
+  `account` varchar(16) NOT NULL,
+  `password` char(64) NOT NULL,
+  `salt` char(4) NOT NULL,
+  `name` varchar(32) NOT NULL,
   `role` varchar(16) NOT NULL DEFAULT '0',
   `location_longitude` double NOT NULL,
   `location_latitude` double NOT NULL,
@@ -150,7 +151,7 @@ ALTER TABLE `transaction`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`UID`),
-  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `username` (`account`),
   ADD UNIQUE KEY `phone_number` (`phone_number`) USING HASH;
 
 --

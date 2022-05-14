@@ -4,5 +4,5 @@
 	session_destroy();
 	$_SESSION['logged'] = false;
 	if (!isset($_SESSION['logged'])) $_SESSION['logged'] = false;
-    header('Location: nav.php');
+    header('Location: index.php');
 ?>

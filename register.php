@@ -23,14 +23,14 @@
         else if ($_POST['password'] != $_POST['re-password']) {
             throw new Exception('密碼驗證 ≠ 密碼');
         }
-        else if (!ctype_alnum($_POST['account']) || !ctype_alnum($_POST['password']) || !ctype_alpha(str_replace(' ', '', $_POST['name'])) || strlen($_POST['phonenumber']) != 10 || !ctype_digit($_POST['phonenumber']) || $_POST['latitude'] > 90 || $_POST['latitude'] < -90 || $_POST['longitude'] > 180 || $_POST['longitude'] < -180) {
+        else if (!ctype_alnum($_POST['account']) || !ctype_alnum($_POST['password']) || !ctype_alpha(str_replace(' ', '', $_POST['name'])) || strlen($_POST['phonenumber']) != 10 || !ctype_digit($_POST['phonenumber']) || $_POST['latitude'] > 90 || $_POST['latitude'] < -90 || $_POST['longitude'] > 180 || $_POST['longitude'] < -180 || !is_numeric($_POST['latitude']) || !is_numeric($_POST['longitude'])) {
             $err_message="";
             if (!ctype_alnum($_POST['account'])) $err_message=$err_message."帳號組成僅包含大小寫英文與數字".'\n';
             if (!ctype_alnum($_POST['password'])) $err_message=$err_message."密碼組成僅包含大小寫英文與數字".'\n';
             if (!ctype_alpha(str_replace(' ', '', $_POST['name']))) $err_message=$err_message."名字組成僅由大小寫英文".'\n';
             if (strlen($_POST['phonenumber']) != 10 || !ctype_digit($_POST['phonenumber'])) $err_message=$err_message."手機號碼需為 10 位數字".'\n';
             if ($_POST['latitude'] > 90 || $_POST['latitude'] < -90 || $_POST['longitude'] > 180 || $_POST['longitude'] < -180) $err_message=$err_message."經緯度範圍不正確".'\n';
-            if (!ctype_digit($_POST['latitude']) || !ctype_digit($_POST['longitude'])) $err_message=$err_message."經緯度應是數字 ";
+            if (!is_numeric($_POST['latitude']) || !is_numeric($_POST['longitude'])) $err_message=$err_message."經緯度應是數字 ";
             throw new Exception("輸入格式不對：".'\n'."$err_message");
         }
         else {

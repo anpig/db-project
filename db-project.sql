@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-05-14 14:15:26
+-- 產生時間： 2022-05-14 15:21:48
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -105,6 +105,7 @@ CREATE TABLE `user` (
   `UID` int(11) NOT NULL,
   `account` varchar(16) NOT NULL,
   `password` char(64) NOT NULL,
+  `salt` char(4) NOT NULL,
   `name` varchar(32) NOT NULL,
   `role` varchar(16) NOT NULL DEFAULT '0',
   `location_longitude` double NOT NULL,

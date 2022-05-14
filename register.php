@@ -18,7 +18,7 @@
             if (empty($_POST['re-password'])) $err_message=$err_message."RETYPE-PASSWORD".'\n';
             if (empty($_POST['latitude'])) $err_message=$err_message."LATITUDE".'\n';
             if (empty($_POST['longitude'])) $err_message=$err_message."LONGTITUDE".'\n'; 
-            throw new Exception('空白欄位:'.'\n'."$err_message");
+            throw new Exception('空白欄位：'.'\n'."$err_message");
         }
         else if ($_POST['password'] != $_POST['re-password']) {
             throw new Exception('密碼驗證 ≠ 密碼');

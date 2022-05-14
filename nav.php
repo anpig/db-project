@@ -100,18 +100,20 @@
               data-target="#myModal">Add value</button>
             <div class="modal fade" id="myModal"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog  modal-sm">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add value</h4>
+                <form action="edit_balance.php" method="post">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add value</h4>
+                    </div>
+                    <div class="modal-body">
+                      <input type="text" class="form-control" id="value" name="value" placeholder="enter add value">
+                    </div>
+                    <div class="modal-footer">
+                    <button type="submit" value="Edit" class="btn btn-primary">Add</button>
+                    </div>
                   </div>
-                  <div class="modal-body">
-                    <input type="text" class="form-control" id="value" placeholder="enter add value">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>

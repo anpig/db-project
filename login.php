@@ -24,12 +24,13 @@
 
             $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
-            $sql = $db->prepare("select account, password, salt from user where account=:account");
+            $sql = $db->prepare("select UID, account, password, salt from user where account=:account");
             $sql->execute(array('account' => $account));
             if ($sql->rowCount()==1) {
                 $row = $sql->fetch();
                 if ($row['password'] == hash('sha256',$row['salt'].$_POST['password'])) {
                     $_SESSION['logged'] = true;
+                    $_SESSION['UID'] = $row['UID'];
                     $_SESSION['account'] = $row['account'];
                     header("Location: nav.php");
                     exit();

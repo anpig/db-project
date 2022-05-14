@@ -69,22 +69,25 @@
             <!--  -->
             <div class="modal fade" id="location"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog  modal-sm">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">edit location</h4>
-                  </div>
-                  <div class="modal-body">
-                    <label class="control-label " for="latitude">latitude</label>
-                    <input type="text" class="form-control" id="latitude" placeholder="enter latitude">
+                <form action="test.php" method="post">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">edit location</h4>
+                    </div>
+                    <div class="modal-body form-group">
+                      <label class="control-label" for="latitude">latitude</label>
+                      <input type="text" name="latitude" class="form-control" id="latitude" placeholder="enter latitude">
                       <br>
-                      <label class="control-label " for="longitude">longitude</label>
-                    <input type="text" class="form-control" id="longitude" placeholder="enter longitude">
+                      <label class="control-label" for="longitude">longitude</label>
+                      <input type="text" name="longitude" class="form-control" id="longitude" placeholder="enter longitude">
+                    </div>
+                    <div class="modal-footer form-group">
+                      <button type="submit" value="Edit" class="btn btn-primary">Edit</button>
+                      <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button> -->
+                    </div>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
 

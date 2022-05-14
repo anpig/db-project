@@ -65,10 +65,10 @@
                         'phone_number' => $phonenumber
                     )
                 );
-                echo "<script>alert(\"Registered Successfully!\"); window.location.replace(\"index.php\");</script>";
+                echo "<script>alert(\"註冊成功\"); window.location.replace(\"index.php\");</script>";
                 exit();
             }
-            else throw new Exception("Account already exists!");
+            else throw new Exception("帳號已被註冊");
         }
 
     } catch (Exception $e) {

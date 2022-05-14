@@ -1,6 +1,18 @@
 <?php
   session_start();
   // $_SESSION['logged'] = true; // debug use only
+  $dbservername='localhost';
+  $dbname='db-project';
+  $dbusername='db';
+  $dbpassword='db';
+
+  $UID=$_SESSION['UID'];
+  $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
+  $sql = $db->prepare("select * from user where UID=:UID");
+  $sql->execute(array('UID' => $UID));
+  $row = $sql->fetch();
+
 	if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
 	  header('Location: .');
     die();
@@ -51,8 +63,11 @@
         <h3>Profile</h3>
         <div class="row">
           <div class="col-xs-12">
-            Account: sherry, user, PhoneNumber: 0912345678,  location: 24.786944626633865, 120.99753981198887
-            
+            <?php
+              $account = $row['account']; $name = $row['name']; $phone_number = $row['phone_number']; $location_longitude = $row['location_longitude']; $location_latitude = $row['location_latitude'];
+              echo "帳號: $account 名字: $name 手機: $phone_number 經度: $location_longitude 緯度: $location_latitude";
+            ?>
+
             <button type="button " style="margin-left: 5px;" class=" btn btn-info " data-toggle="modal"
             data-target="#location">edit location</button>
             <!--  -->
@@ -80,7 +95,7 @@
 
 
             <!--  -->
-            walletbalance: 100
+            walletbalance: <?php echo $row['balance']; ?>
             <!-- Modal -->
             <button type="button " style="margin-left: 5px;" class=" btn btn-info " data-toggle="modal"
               data-target="#myModal">Add value</button>

@@ -43,21 +43,17 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand " href="#">ABerEats</a>
-        <a href="logout.php"><button style="position: absolute; right: 1%;" class="btn navbar-btn navbar-right">Log Out</button></a>
+        <a class="navbar-brand" href="#">ABerEats</a>
+        <ul class="nav navbar-nav">
+          <li class="active"><a data-toggle="tab" href="#home" >Home</a></li>
+          <li><a data-toggle="tab" href="#menu1">Shop</a></li>
+        </ul>
+        <a href="logout.php"><button style="position: absolute; right: 1%;" class="btn btn-danger navbar-btn navbar-right">Log Out</button></a>
       </div>
     </div>
   </nav>
 
   <div class="container">
-
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#home">Home</a></li>
-      <li><a href="#menu1">shop</a></li>
-
-
-    </ul>
-
     <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
         <h3>Profile</h3>
@@ -73,22 +69,25 @@
             <!--  -->
             <div class="modal fade" id="location"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog  modal-sm">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">edit location</h4>
-                  </div>
-                  <div class="modal-body">
-                    <label class="control-label " for="latitude">latitude</label>
-                    <input type="text" class="form-control" id="latitude" placeholder="enter latitude">
+                <form action="test.php" method="post">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">edit location</h4>
+                    </div>
+                    <div class="modal-body form-group">
+                      <label class="control-label" for="latitude">latitude</label>
+                      <input type="text" name="latitude" class="form-control" id="latitude" placeholder="enter latitude">
                       <br>
-                      <label class="control-label " for="longitude">longitude</label>
-                    <input type="text" class="form-control" id="longitude" placeholder="enter longitude">
+                      <label class="control-label" for="longitude">longitude</label>
+                      <input type="text" name="longitude" class="form-control" id="longitude" placeholder="enter longitude">
+                    </div>
+                    <div class="modal-footer form-group">
+                      <button type="submit" value="Edit" class="btn btn-primary">Edit</button>
+                      <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button> -->
+                    </div>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
 

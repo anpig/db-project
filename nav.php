@@ -43,21 +43,17 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand " href="#">ABerEats</a>
-        <a href="logout.php"><button style="position: absolute; right: 1%;" class="btn navbar-btn navbar-right">Log Out</button></a>
+        <a class="navbar-brand" href="#">ABerEats</a>
+        <ul class="nav navbar-nav">
+          <li class="active"><a data-toggle="tab" href="#home" >Home</a></li>
+          <li><a data-toggle="tab" href="#menu1">Shop</a></li>
+        </ul>
+        <a href="logout.php"><button style="position: absolute; right: 1%;" class="btn btn-danger navbar-btn navbar-right">Log Out</button></a>
       </div>
     </div>
   </nav>
 
   <div class="container">
-
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#home">Home</a></li>
-      <li><a href="#menu1">shop</a></li>
-
-
-    </ul>
-
     <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
         <h3>Profile</h3>

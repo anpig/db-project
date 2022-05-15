@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-05-14 18:42:33
+-- 產生時間： 2022-05-15 13:12:11
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -62,7 +62,9 @@ CREATE TABLE `product` (
   `SID` int(11) NOT NULL,
   `product_name` varchar(32) NOT NULL,
   `price` int(11) NOT NULL,
-  `picture` varchar(64) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `picture` mediumblob NOT NULL,
+  `picture_type` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -115,15 +117,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 傾印資料表的資料 `user`
---
-
-INSERT INTO `user` (`UID`, `account`, `password`, `salt`, `name`, `role`, `location_longitude`, `location_latitude`, `phone_number`, `balance`) VALUES
-(1, 'pkid0anpig', '5e9abe7a56edadad8b08480359c4e8ba20e92cd1b118aa8c77f835d35550eb4f', '2163', 'anpig', 0, 123, 23, '0933288551', 0),
-(2, 'qwe', 'e94d804fc147e85ebd5b963928ae0bf4648661d720a76a488d37262b6863ae3d', '9935', 'qwe', 0, 124, 34, '1231231231', 0),
-(3, 'asd', '8c01fc1b4ad7d356cd463d662e7b78a35d14c0e902cdb44f192392707ccd0c89', '7932', 'asd', 0, 125, 34, '2342342342', 0);
-
---
 -- 已傾印資料表的索引
 --
 
@@ -139,7 +132,7 @@ ALTER TABLE `items`
 ALTER TABLE `product`
   ADD PRIMARY KEY (`PID`),
   ADD UNIQUE KEY `SID_product_name` (`SID`,`product_name`),
-  ADD UNIQUE KEY `picture` (`picture`);
+  ADD UNIQUE KEY `picture` (`picture`) USING HASH;
 
 --
 -- 資料表索引 `shop`
@@ -189,7 +182,7 @@ ALTER TABLE `transaction`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

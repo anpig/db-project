@@ -31,6 +31,7 @@
                         $picture_type = $row['picture_type'];
                         $_SESSION['PID'] = $row['PID'];
                         echo '<tr><td><img style="max-width: 100%; height:auto" src="data:'.$picture_type.';base64,' . $picture . '"  alt="$product_name"/></td>';
+                        echo '<tr><td><img style="max-width:100%; max-height:200px" src="data:'.$picture_type.';base64,' . $picture . '"  alt="$product_name"/></td>';
                         echo <<< EOT
                                 <td>$product_name</td>
                                 <td>$price</td>

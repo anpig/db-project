@@ -1,3 +1,9 @@
+<?php
+  if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
+    header('Location: .');
+    die();
+  }
+?>
 <div id="shop" class="tab-pane fade">
   <?php
     if (!$row['role']) include('shop_notowner.html');

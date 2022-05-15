@@ -1,3 +1,9 @@
+<?php
+  if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
+    header('Location: .');
+    die();
+  }
+?>
 <div id="home" class="tab-pane fade in active">
   <h3>Profile</h3>
   <div class="row">

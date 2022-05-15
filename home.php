@@ -10,7 +10,7 @@
     <div class="col-xs-12">
       <?php
         $account = $row['account']; $name = $row['name']; $phone_number = $row['phone_number']; $location_longitude = $row['location_longitude']; $location_latitude = $row['location_latitude'];
-        echo "帳號: $account 名字: $name 手機: $phone_number 經度: $location_longitude 緯度: $location_latitude";
+        echo "帳號：$account 名字：$name 手機：$phone_number 經度：$location_longitude 緯度：$location_latitude";
       ?>
       <button type="button " style="margin-left: 5px; margin-right: 10px;" class=" btn btn-info " data-toggle="modal"
       data-target="#location">Edit Location</button>

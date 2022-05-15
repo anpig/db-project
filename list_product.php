@@ -9,12 +9,12 @@
         <table class="table" style="margin-top: 15px;">
             <thead>
                 <tr>
-                    <th scope="col">Picture</th>
-                    <th scope="col">Meal Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th width="50%" scope="col">Picture</th>
+                    <th width="20%" scope="col">Meal Name</th>
+                    <th width="10%" scope="col">Price</th>
+                    <th width="10%" scope="col">Quantity</th>
+                    <th width="5%" scope="col"></th>
+                    <th width="5%" scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,9 +27,10 @@
                         $product_name = $row['product_name'];
                         $price = $row['price'];
                         $quantity = $row['quantity'];
+                        $picture = $row['picture'];
+                        $picture_type = $row['picture_type'];
+                        echo '<tr><td><img style="max-width: 100%; height:auto" src="data:'.$picture_type.';base64,' . $picture . '"  alt="$product_name"/></td>';
                         echo <<< EOT
-                            <tr>
-                                <td><img src="Picture/1.jpg" with="50" heigh="10" alt="$product_name"></td>
                                 <td>$product_name</td>
                                 <td>$price</td>
                                 <td>$quantity</td>

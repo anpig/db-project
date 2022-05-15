@@ -11,7 +11,7 @@
         if (empty($_POST['value'])) {
             throw new Exception('空白欄位');
         }
-        else if (!is_numeric($_POST['value'])) {
+        else if (!is_numeric($_POST['value']) || $_POST['value'] < 0 ) {
             throw new Exception("輸入格式不對");
         }
         else {

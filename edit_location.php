@@ -18,10 +18,11 @@
             if (empty($_POST['longitude'])) $err_message=$err_message."LONGTITUDE".'\n'; 
             throw new Exception('空白欄位：'.'\n'."$err_message");
         }
-        else if ($_POST['latitude'] > 90 || $_POST['latitude'] < -90 || $_POST['longitude'] > 180 || $_POST['longitude'] < -180 || !is_numeric($_POST['latitude']) || !is_numeric($_POST['longitude'])) {
-            if ($_POST['latitude'] > 90 || $_POST['latitude'] < -90 || $_POST['longitude'] > 180 || $_POST['longitude'] < -180) $err_message=$err_message."經緯度範圍不正確".'\n';
-            if (!is_numeric($_POST['latitude']) || !is_numeric($_POST['longitude'])) $err_message=$err_message."經緯度應是數字 ";
-            throw new Exception("輸入格式不對：".'\n'."$err_message");
+        else if (!is_numeric($_POST['latitude']) || !is_numeric($_POST['longitude'])) {
+            throw new Exception("經緯度應是數字");
+        }
+        else if ($_POST['latitude'] > 90 || $_POST['latitude'] < -90 || $_POST['longitude'] > 180 || $_POST['longitude'] < -180) {
+            throw new Exception("經緯度範圍不正確");
         }
         else {
             $latitude = $_POST['latitude'];

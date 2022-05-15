@@ -29,6 +29,7 @@
                         $quantity = $row['quantity'];
                         $picture = $row['picture'];
                         $picture_type = $row['picture_type'];
+                        $_SESSION['PID'] = $row['PID'];
                         echo '<tr><td><img style="max-width: 100%; height:auto" src="data:'.$picture_type.';base64,' . $picture . '"  alt="$product_name"/></td>';
                         echo <<< EOT
                                 <td>$product_name</td>
@@ -45,21 +46,23 @@
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <div class="row" >
-                                                    <div class="col-xs-6">
-                                                        <label for="ex71">Price</label>
-                                                        <input class="form-control" id="ex71" type="text">
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <label for="ex41">Quantity</label>
-                                                        <input class="form-control" id="ex41" type="text">
+                                            <form action="edit_product.php" method="post">
+                                                <div class="modal-body">
+                                                    <div class="row" >
+                                                        <div class="col-xs-6">
+                                                            <label for="ex71">Price</label>
+                                                            <input class="form-control" id="ex71" name="price" type="text">
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <label for="ex41">Quantity</label>
+                                                            <input class="form-control" id="ex41" name="quantity" type="text">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-secondary">Edit</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

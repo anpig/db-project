@@ -13,18 +13,16 @@
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
   //開啟圖片檔
   try { 
-    if (empty($_POST['product_name']) || empty($_POST['price']) || empty($_POST['quantity'])) {
+    if (empty($_POST['product_name']) || empty($_POST['price']) || empty($_POST['quantity']) || empty($_FILES["picture"]["tmp_name"])) {
       $err_message="";
       if (empty($_POST['product_name'])) $err_message=$err_message."PRODUCT_NAME".'\n';
       if (empty($_POST['price'])) $err_message=$err_message."PRICE".'\n';
       if (empty($_POST['quantity'])) $err_message=$err_message."QUANTITY".'\n';
-      throw new Exception('空白欄位：'.'\n'."$err_message");
+      if (empty($_FILES["picture"]["tmp_name"])) $err_message=$err_message.'請選擇檔案\n';
+      throw new Exception('空白欄位：\n'."$err_message");
     }
     if (!ctype_digit($_POST['price']) || !ctype_digit($_POST['quantity']) || $_POST['price'] < 0 || $_POST['quantity'] < 0) {
       throw new Exception("格式錯誤，價格與數量需為非負整數");
-    }
-    if (empty($_FILES["picture"]["tmp_name"])) {
-      throw new Exception("請選擇檔案");
     }
 
     $sql = $db->prepare("SELECT * FROM user WHERE UID=:UID");

@@ -6,7 +6,7 @@
 ?>
 <div id="shop" class="tab-pane fade">
   <?php
-    if (!$row['role']) include('shop_notowner.html');
-    else include('shop_isowner.php');
+    if ($row['role']) include('shop_isowner.php');
+    else include('shop_notowner.php');
   ?>
 </div>

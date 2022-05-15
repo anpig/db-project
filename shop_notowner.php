@@ -1,3 +1,9 @@
+<?php
+    if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
+        header('Location: .');
+        die();
+    }
+?>
 <h3>Start a business</h3>
 <form action="register_shop.php" method="post">
     <div class="form-group">

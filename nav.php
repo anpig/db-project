@@ -43,10 +43,10 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">ABerEats</a>
+        <span class="nav-item"><a class="navbar-brand" href="#home" data-toggle="tab">ABerEats</a></span>
         <ul class="nav navbar-nav">
-          <li class="active"><a data-toggle="tab" href="#home" >Home</a></li>
-          <li><a data-toggle="tab" href="#menu1">Shop</a></li>
+          <li class="nav-item active"><a href="#home" data-toggle="tab">Home</a></li>
+          <li class="nav-item"><a href="#shop" data-toggle="tab">Shop</a></li>
         </ul>
         <a href="logout.php"><button style="position: absolute; right: 1%;" class="btn btn-danger navbar-btn navbar-right">Log Out</button></a>
       </div>
@@ -272,26 +272,22 @@
           </div>
 
         </div>
-        
-
          <!--  -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Order</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
-      <div id="menu1" class="tab-pane fade">
+      <div id="shop" class="tab-pane fade">
         <?php
           if (!$row['role']) {
             echo <<< EOT
-              <h3> Start a business </h3>
+              <h3>Start a business</h3>
               <form action="register_shop.php" method="post">
                 <div class="form-group">
                     <div class="row">
@@ -323,7 +319,7 @@
           }
           else {
             echo <<< EOT
-              <h3>ADD</h3>
+              <h3>Add Meal</h3>
               <div class="form-group ">
                 <div class="row">
                   <div class="col-xs-6">
@@ -453,9 +449,21 @@
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
   <script>
-    $(document).ready(function () {
-      $(".nav-tabs a").click(function () {
+    $(function(){
+      var hash = window.location.hash;
+      hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+      $('.nav-item a').click(function (e) {
         $(this).tab('show');
+        var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+        window.location.hash = this.hash;
+        $('html,body').scrollTop(scrollmem);
+      });
+      $('.nav-brand a').click(function (e) {
+        $(this).tab('show');
+        var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+        window.location.hash = this.hash;
+        $('html,body').scrollTop(scrollmem);
       });
     });
   </script>

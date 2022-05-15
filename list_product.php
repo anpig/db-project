@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                <td><a href="delete_product.php"><button type="submit" class="btn btn-danger">Delete</button></a></td>
                             </tr>
                         EOT;
                     }

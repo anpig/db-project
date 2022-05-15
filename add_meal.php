@@ -20,7 +20,7 @@
       if (empty($_POST['quantity'])) $err_message=$err_message."QUANTITY".'\n';
       throw new Exception('空白欄位：'.'\n'."$err_message");
     }
-    if (!is_integer($_POST['price']) || is_integer($_POST['quantity']) || $_POST['price'] || $_POST['quantity'] < 0) {
+    if (!ctype_digit($_POST['price']) || !ctype_digit($_POST['quantity']) || $_POST['price'] < 0 || $_POST['quantity'] < 0) {
       throw new Exception("格式錯誤，價格與數量需為非負整數");
     }
     if (empty($_FILES["picture"]["tmp_name"])) {

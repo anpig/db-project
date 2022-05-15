@@ -3,7 +3,6 @@
     <body>
     <?php
         session_start();
-        $_SESSION['logged'] = false;
         $dbservername='localhost';
         $dbname='db-project';
         $dbusername='db';
@@ -51,8 +50,8 @@
                     $salt = strval(rand(1000,9999));
                     $hashvalue = hash('sha256', $salt.$password);
                     $sql = $db->prepare("
-                        insert into user (account, password, salt, name, location_longitude, location_latitude, phone_number)
-                        values (:account, :password, :salt, :name, :location_longitude, :location_latitude, :phone_number)
+                        INSERT into user (account, password, salt, name, location_longitude, location_latitude, phone_number)
+                        VALUES (:account, :password, :salt, :name, :location_longitude, :location_latitude, :phone_number)
                     ");
                     $sql->execute(
                         array(

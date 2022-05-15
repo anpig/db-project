@@ -35,7 +35,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <title>Hello, world!</title>
+  <title>ABerEats</title>
 </head>
 
 <body>
@@ -289,7 +289,7 @@
       </div>
       <div id="menu1" class="tab-pane fade">
         <?php
-          if (true) {
+          if (false) {
             echo <<< EOT
               <h3> Start a business </h3>
               <div class="form-group ">
@@ -430,7 +430,6 @@
                                     <input class="form-control" id="ex42" type="text">
                                   </div>
                                 </div>
-                      
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>

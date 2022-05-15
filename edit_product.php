@@ -4,8 +4,7 @@
     header('Location: .');
     die();
   }
-  $PID = $_SESSION['PID'];
-  $_SESSION['PID'] = null;
+  $PID = $_POST['PID'];
   $UID = $_SESSION['UID'];
   $dbservername='localhost';
   $dbname='db-project';

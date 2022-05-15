@@ -29,7 +29,6 @@
                         $quantity = $row['quantity'];
                         $picture = $row['picture'];
                         $picture_type = $row['picture_type'];
-                        $_SESSION['PID'] = $row['PID'];
                         echo '<tr><td><img style="max-width:100%; max-height:200px" src="data:'.$picture_type.';base64,' . $picture . '"  alt="$product_name"/></td>';
                         echo <<< EOT
                                 <td>$product_name</td>
@@ -57,6 +56,7 @@
                                                             <label for="ex41">Quantity</label>
                                                             <input class="form-control" id="ex41" name="quantity" type="text">
                                                         </div>
+                                                        <input type="hidden" name="PID" value="$PID">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -66,7 +66,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <td><a href="delete_product.php"><button type="submit" class="btn btn-danger">Delete</button></a></td>
+                                <form action="delete_product.php" method="post">
+                                    <input type="hidden" name="PID" value="$PID">
+                                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                                </form>
                             </tr>
                         EOT;
                     }

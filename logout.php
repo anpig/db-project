@@ -1,8 +1,7 @@
 <?php
 	session_start();
+	$_SESSION['logged'] = false;
 	session_unset();
 	session_destroy();
-	$_SESSION['logged'] = false;
-	if (!isset($_SESSION['logged'])) $_SESSION['logged'] = false;
-    header('Location: index.php');
+    header('Location: .');
 ?>

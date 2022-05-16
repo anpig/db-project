@@ -60,21 +60,23 @@
             $dis = cal_distance($user_latitude, $user_longitude, $shop_latitude, $shop_longitude);
             $Distance = "";
             if (isset($_REQUEST['distance'])) {
-                $Distance = $_REQUEST['distance'];
                 if ($_REQUEST['distance'] == "near") {
+                    $Distance = "Near";
                     if ($dis > 2) continue;
                 }
                 else if ($_REQUEST['distance'] == "medium") {
+                    $Distance = "Medium";
                     if ($dis <= 2 || $dis >= 5) continue;
                 }
                 else if ($_REQUEST['distance'] == "far") {
+                    $Distance = "Far";
                     if ($dis < 5) continue;
                 }
             }
             else {
-                if ($dis <= 2) $Distance = "near";
-                else if($dis > 2 && $dis < 5) $Distance = "medium";
-                else $Distance = "far";
+                if ($dis <= 2) $Distance = "Near";
+                else if($dis > 2 && $dis < 5) $Distance = "Medium";
+                else $Distance = "Far";
             }
             echo <<< EOT
                 <tr>

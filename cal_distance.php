@@ -1,7 +1,7 @@
 <?php
   function distance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo) {
     // convert from degrees to radians
-    $earthRadius = 6371000;
+    $earthRadius = 6371;
     $latFrom = deg2rad($latitudeFrom);
     $lonFrom = deg2rad($longitudeFrom);
     $latTo = deg2rad($latitudeTo);
@@ -14,4 +14,5 @@
       cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
     return $angle * $earthRadius;
   }
+  echo distance(22.5, 120, 20, 119);
 ?>

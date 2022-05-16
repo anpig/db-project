@@ -15,7 +15,7 @@
         $row = $sql->fetch();
         $user_latitude = $row['location_latitude']; $user_longitude = $row['location_longitude'];
         $somethingisset = false;
-        $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude, product_name, price 
+        $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude
                         FROM shop NATURAL LEFT JOIN product 
                         WHERE shopname LIKE :shopname 
                         AND category LIKE :category 

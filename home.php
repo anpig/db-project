@@ -4,6 +4,7 @@
     die();
   }
 ?>
+<script>filter = {};</script>
 <div id="home" class="tab-pane fade in active">
   <h3>Profile</h3>
   <div class="row">
@@ -65,15 +66,16 @@
   </div>
   <h3>Search</h3>
   <div class=" row  col-xs-8">
-    <form class="form-horizontal" action="/action_page.php">
+    <form class="form-horizontal">
       <div class="form-group">
         <label class="control-label col-sm-1" for="Shop">Shop</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" placeholder="Enter Shop name">
+          <input type="text" class="form-control" placeholder="Enter Shop name" oninput="filter['shopname'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="distance">Distance</label>
         <div class="col-sm-5">
-          <select class="form-control" id="sel1">
+          <select class="form-control" onchange="filter['distance'] = this.value;">
+            <option>All</option>
             <option>Near</option>
             <option>Medium </option>
             <option>Far</option>
@@ -83,30 +85,31 @@
       <div class="form-group">
         <label class="control-label col-sm-1" for="Price">Price</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" oninput="filter['price_floor'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="~">~</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" oninput="filter['price_ceiling'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="Meal">Meal</label>
         <div class="col-sm-5">
-          <input type="text" list="Meals" class="form-control" id="Meal" placeholder="Enter Meal">
+          <input type="text" list="Meals" class="form-control" id="Meal" placeholder="Enter Meal" onchange="filter['meal'] = this.value;">
           <datalist id="Meals">
+            <!-- needs to do sth with php -->
             <option value="Hamburger">
             <option value="coffee">
           </datalist>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-1" for="category"> Category</label>
+        <label class="control-label col-sm-1" for="category">Category</label>
           <div class="col-sm-5">
-            <input type="text" list="categorys" class="form-control" id="category" placeholder="Enter shop category">
+            <input type="text" list="categorys" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
             <datalist id="categorys">
               <option value="fast food">
             </datalist>
           </div>
-          <button type="submit" style="margin-left: 18px;"class="btn btn-primary">Search</button>
+          <button type="button" style="margin-left: 18px;"class="btn btn-primary" onclick="search_list(filter); console.log(filter);">Search</button>
       </div>
     </form>
   </div>
@@ -115,15 +118,14 @@
       <table class="table" style=" margin-top: 15px;">
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Shop Name</th>
             <th scope="col">Shop Category</th>
             <th scope="col">Distance</th>
+            <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="result-list">
           <tr>
-            <th scope="row">1</th>
             <td>macdonald</td>
             <td>fast food</td>
             <td>near </td>
@@ -146,14 +148,10 @@
                   <table class="table" style=" margin-top: 15px;">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Picture</th>
-                      
-                        <th scope="col">meal name</th>
-                    
-                        <th scope="col">price</th>
+                        <th scope="col">Meal Name</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
-                      
                         <th scope="col">Order check</th>
                       </tr>
                     </thead>
@@ -161,23 +159,17 @@
                       <tr>
                         <th scope="row">1</th>
                         <td><img src="Picture/1.jpg" with="50" heigh="10" alt="Hamburger"></td>
-                      
                         <td>Hamburger</td>
-                      
                         <td>80 </td>
                         <td>20 </td>
-                    
                         <td> <input type="checkbox" id="cbox1" value="Hamburger"></td>
                       </tr>
                       <tr>
                         <th scope="row">2</th>
                         <td><img src="Picture/2.jpg" with="10" heigh="10" alt="coffee"></td>
-                      
                         <td>coffee</td>
-                  
                         <td>50 </td>
                         <td>20</td>
-                    
                         <td><input type="checkbox" id="cbox2" value="coffee"></td>
                       </tr>
                     </tbody>
@@ -194,3 +186,31 @@
     </div>
   </div>
 </div>
+<script>
+  function search_list(filter) {
+    if (jQuery.isEmptyObject(filter)) {
+      return;
+    }
+    else {
+      var querystring = "";
+      if (filter['shopname']) querystring += "shopname=" + filter['shopname'];
+      if (filter['distance'] == "Near") querystring += "&distance=near";
+      else if (filter['distance'] == "Medium") querystring += "&distance=medium";
+      else if (filter['distance'] == "Far") querystring += "&distance=far";
+      if (filter['price_floor']) querystring += "&price_floor=" + filter['price_floor'];
+      if (filter['price_ceiling']) querystring += "&price_ceiling=" + filter['price_ceiling'];
+      if (filter['meal']) querystring += "&meal=" + filter['meal'];
+      if (filter['category']) querystring += "&category=" + filter['category'];
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("result-list").innerHTML = this.responseText;
+        }
+      };
+      console.log(querystring);
+      xhttp.open("POST", "search.php", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send(querystring);
+    }
+  }
+</script>

@@ -15,10 +15,12 @@
         $row = $sql->fetch();
         $user_latitude = $row['location_latitude']; $user_longitude = $row['location_longitude'];
         $somethingisset = false;
-        $querystring = "SELECT SID, shopname, category, location_longitude, location_latitude FROM shop 
-                        WHERE shopname LIKE :shopname AND category LIKE :category
-                        AND SID=(SELECT SID FROM product WHERE product_name LIKE :meal
-                        AND price BETWEEN :price_floor and :price_ceiling)";
+        $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude, product_name, price 
+                        FROM shop NATURAL LEFT JOIN product 
+                        WHERE shopname LIKE :shopname 
+                        AND category LIKE :category 
+                        AND (product_name LIKE :meal OR product_name IS NULL) 
+                        AND (price BETWEEN :price_floor AND :price_ceiling OR price IS NULL)";
         if (isset($_REQUEST['shopname'])) $shopname = "%" . $_REQUEST['shopname'] . "%";
         else $shopname = "%%";
         if (isset($_REQUEST['category'])) $category = "%" . $_REQUEST['category'] . "%";

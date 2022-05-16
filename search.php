@@ -17,7 +17,7 @@
         $somethingisset = false;
         $querystring = "SELECT SID, shopname, category, location_longitude, location_latitude FROM shop 
                         WHERE shopname LIKE :shopname AND category LIKE :category AND SID=(
-                            SELECT SID FROM product WHERE product_name LIKE :meal)
+                            SELECT SID FROM product WHERE product_name LIKE :meal
                         )";
         if (isset($_REQUEST['shopname'])) $shopname = "%" . $_REQUEST['shopname'] . "%";
         else $shopname = "%%";

@@ -40,6 +40,7 @@
             $querystring .= "shopname LIKE :shopname";
             $somethingisset = true;
         }
+        else $shopname = "%%";
         // if (isset($_REQUEST['distance'])) {
         //     if ($somethingisset) $querystring += " AND ";
         //     if ($_REQUEST['distance'] == "near") $querystring += ""

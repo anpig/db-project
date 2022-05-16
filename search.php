@@ -9,18 +9,17 @@
     try {
         $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $sql = $db->prepare("select * from user where UID=:UID");
         $sql->execute(array('UID' => $UID));
         $row = $sql->fetch();
         $user_latitude = $row['location_latitude']; $user_longitude = $row['location_longitude'];
-        $somethingisset = false;
-        $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude
+        $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude,
+                            IFNULL(product_name, '') product_name, IFNULL(price, -1) price
                         FROM shop NATURAL LEFT JOIN product 
                         WHERE shopname LIKE :shopname 
                         AND category LIKE :category 
-                        AND (product_name LIKE :meal OR product_name IS NULL) 
-                        AND (price BETWEEN :price_floor AND :price_ceiling OR price IS NULL)";
+                        AND product_name LIKE :meal
+                        AND price BETWEEN :price_floor AND :price_ceiling";
         if (isset($_REQUEST['shopname'])) $shopname = "%" . $_REQUEST['shopname'] . "%";
         else $shopname = "%%";
         if (isset($_REQUEST['category'])) $category = "%" . $_REQUEST['category'] . "%";

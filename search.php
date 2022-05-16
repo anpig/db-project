@@ -17,7 +17,7 @@
         $somethingisset = false;
         $querystring = "SELECT SID, shopname, category, location_longitude, location_latitude FROM shop 
                         WHERE shopname LIKE :shopname AND category LIKE :category AND SID=(
-                            SELECT SID FROM product WHERE product_name LIKE :meal
+                            SELECT SID FROM product WHERE product_name LIKE :meal AND price BETWEEN :price_floor and :price_ceiling
                         )";
         if (isset($_REQUEST['shopname'])) $shopname = "%" . $_REQUEST['shopname'] . "%";
         else $shopname = "%%";
@@ -25,17 +25,20 @@
         else $category = "%%";
         if (isset($_REQUEST['meal'])) $meal = "%" . $_REQUEST['meal'] . "%";
         else $meal = "%%";
-        // if (isset($_REQUEST['distance'])) {
-        //     if ($somethingisset) $querystring += " AND ";
-        //     if ($_REQUEST['distance'] == "near") $querystring += ""
-        //     if ($_REQUEST['distance'] == "medium")
-        //     if ($_REQUEST['distance'] == "far")
-        // }
+        $price_floor = 0; $price_ceiling = 2147483647;
+        if (isset($_REQUEST['price_floor'])) {
+            $price_floor = $_REQUEST['price_floor'];
+        }
+        if (isset($_REQUEST['price_ceiling'])) {
+            $price_ceiling = $_REQUEST['price_ceiling'];
+        }
         $sql = $db->prepare($querystring);
         $sql->execute(array(
             'shopname' => $shopname,
             'category' => $category,
-            'meal' => $meal
+            'meal' => $meal,
+            'price_floor' => $price_floor,
+            'price_ceiling' => $price_ceiling
         ));
         $result = $sql->fetchAll();
         foreach ($result as &$row) {

@@ -5,23 +5,6 @@
     $dbusername='db';
     $dbpassword='db';
     $UID=$_SESSION['UID'];
-
-    function cal_distance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo) {
-        // convert from degrees to radians
-        $earthRadius = 6371;
-        $latFrom = deg2rad($latitudeFrom);
-        $lonFrom = deg2rad($longitudeFrom);
-        $latTo = deg2rad($latitudeTo);
-        $lonTo = deg2rad($longitudeTo);
-    
-        $latDelta = $latTo - $latFrom;
-        $lonDelta = $lonTo - $lonFrom;
-    
-        $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
-          cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
-        return $angle * $earthRadius;
-      }
-
     try {
         $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -57,41 +40,35 @@
             $shop_latitude = $row['location_latitude'];
             $shop_longitude = $row['location_longitude'];
             $dis = cal_distance($user_latitude, $user_longitude, $shop_latitude, $shop_longitude);
-            $Distance = "";
+            $distanceWord = "";
             if (isset($_REQUEST['distance'])) {
                 if ($_REQUEST['distance'] == "near") {
-                    $Distance = "Near";
+                    $distanceWord = "Near";
                     if ($dis > 2) continue;
                 }
                 else if ($_REQUEST['distance'] == "medium") {
-                    $Distance = "Medium";
+                    $distanceWord = "Medium";
                     if ($dis <= 2 || $dis >= 5) continue;
                 }
                 else if ($_REQUEST['distance'] == "far") {
-                    $Distance = "Far";
+                    $distanceWord = "Far";
                     if ($dis < 5) continue;
                 }
             }
             else {
-                if ($dis <= 2) $Distance = "Near";
-                else if($dis > 2 && $dis < 5) $Distance = "Medium";
-                else $Distance = "Far";
+                if ($dis <= 2) $distanceWord = "Near";
+                else if ($dis < 5) $distanceWord = "Medium";
+                else $distanceWord = "Far";
             }
             echo <<< EOT
                 <tr>
                     <td>$shopname</td>
                     <td>$category</td>
-                    <td>$Distance</td>
+                    <td>$distanceWord</td>
                     <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#$SID">Open menu</button></td>
                 </tr>
             EOT;
         }
-        // if ($sql->rowCount() == 0) {
-        //     echo 'YES';
-        // }
-        // else {
-        //     echo 'NO';
-        // }
     }
     catch (Exception $e) { 
         $msg = $e->getMessage();

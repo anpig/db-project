@@ -114,7 +114,7 @@
     </form>
   </div>
   <div class="row">
-    <div class="  col-xs-8">
+    <div class="col-xs-8">
       <table class="table" style=" margin-top: 15px;">
         <thead>
           <tr>
@@ -125,12 +125,33 @@
           </tr>
         </thead>
         <tbody id="result-list">
-          <tr>
-            <td>macdonald</td>
-            <td>fast food</td>
-            <td>near </td>
-            <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#macdonald">Open menu</button></td>
-          </tr>
+          <?php
+            $sql = $db->query("select * from user where UID=$UID");
+            $row = $sql->fetch();
+            $user_latitude = $row['location_latitude']; $user_longitude = $row['location_longitude'];
+            $sql = $db->query("SELECT SID, shopname, category, location_latitude, location_longitude FROM shop");
+            $result = $sql->fetchAll();
+            foreach ($result as &$row) {
+              $shopname = $row['shopname'];
+              $category = $row['category'];
+              $SID = $row['SID'];
+              $shop_latitude = $row['location_latitude'];
+              $shop_longitude = $row['location_longitude'];
+              $dis = cal_distance($user_latitude, $user_longitude, $shop_latitude, $shop_longitude);
+              $distanceWord = "";
+              if ($dis <= 2) $distanceWord = "Near";
+              else if ($dis < 5) $distanceWord = "Medium";
+              else $distanceWord = "Far";
+              echo <<< EOT
+                  <tr>
+                      <td>$shopname</td>
+                      <td>$category</td>
+                      <td>$distanceWord</td>
+                      <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#$SID">Open menu</button></td>
+                  </tr>
+              EOT;
+            }
+          ?>
         </tbody>
       </table>
       <!-- Modal -->

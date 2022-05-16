@@ -17,6 +17,7 @@
 	  header('Location: .');
     die();
 	}
+  include('cal_distance.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

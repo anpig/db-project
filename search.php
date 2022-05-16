@@ -69,6 +69,7 @@
                 </thead>
                 <tbody id="result-list">
         EOT;
+        $SID_arr = array();
         foreach ($result as &$row) {
             $shopname = $row['shopname'];
             $category = $row['category'];
@@ -104,66 +105,68 @@
                     <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#$SID">Open menu</button></td>
                 </tr>
             EOT;
+            array_push($SID_arr, $SID);
         }
-        echo <<< EOT
-                </tbody>
-            </table>
-            <!-- Modal -->
-            <div class="modal fade" id="macdonald"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">menu</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="  col-xs-12">
-                                    <table class="table" style=" margin-top: 15px;">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Picture</th>
-                                                <th scope="col">Meal Name</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Order check</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-        EOT;
-        foreach ($result as &$row) {
-            $SID = $row['SID'];
-            $sql = $db->query("SELECT * FROM product WHERE SID=$SID");
-            $shoprow = $sql->fetch();
-            $product_name = $shoprow['product_name'];
-            $price = $shoprow['price'];
-            $quantity = $shoprow['quantity'];
-            $picture = $shoprow['picture'];
-            $picture_type = $shoprow['picture_type'];
-            echo '<tr><td><img style="max-width:100%; max-height:200px" src="data:'.$picture_type.';base64,' . $picture . '" alt="$product_name"/></td>';
+        foreach ($SID_arr as $SID) {
             echo <<< EOT
-                    <td>$product_name</td>
-                    <td>$price</td>
-                    <td>$quantity</td>
-                    <td><input type="checkbox" id="#$SID" value="$product_name"></td>
-                </tr>
-            EOT;
-        }
-        echo <<< EOT
-                        </tbody>
+                </tbody>
                     </table>
-                </div>
+                    <!-- Modal -->
+                        <div class="modal fade" id=$SID  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">menu</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="  col-xs-12">
+                                                <table class="table" style=" margin-top: 15px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Picture</th>
+                                                            <th scope="col">Meal Name</th>
+                                                            <th scope="col">Price</th>
+                                                            <th scope="col">Quantity</th>
+                                                            <th scope="col">Order check</th>
+                                                        </tr>
+                                                    </thead>
+                                                <tbody>
+            EOT;
+            $sql = $db->query("SELECT * FROM product WHERE SID=$SID");
+            $shoprow = $sql->fetchAll();
+            foreach ($shoprow as &$row) {
+                $product_name = $row['product_name'];
+                $price = $row['price'];
+                $quantity = $row['quantity'];
+                $picture = $row['picture'];
+                $picture_type = $row['picture_type'];
+                echo '<tr><td><img style="max-width:100%; max-height:200px" src="data:'.$picture_type.';base64,' . $picture . '" alt="$product_name"/></td>';
+                echo <<< EOT
+                        <td>$product_name</td>
+                        <td>$price</td>
+                        <td>$quantity</td>
+                        <td><input type="checkbox" id="#$SID" value="$product_name"></td>
+                    </tr>
+                EOT;
+            }
+            echo <<< EOT
+            </tbody>
+                </table>
                     </div>
                         </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Order</button>
+                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Order</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        EOT;
+            EOT;
+        }
     }
     catch (Exception $e) { 
         $msg = $e->getMessage();

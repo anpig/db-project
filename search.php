@@ -30,7 +30,7 @@
             $price_ceiling = $_REQUEST['price_ceiling'];
         }
         if (isset($_REQUEST['price']) || isset($_REQUEST['meal'])) {
-            $querystring = "SELECT SID, shopname, category, location_longitude, location_latitude, product_name, price
+            $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude, product_name, price
                             FROM shop NATURAL LEFT JOIN product
                             WHERE shopname LIKE :shopname 
                             AND category LIKE :category 
@@ -46,7 +46,7 @@
             ));
         }
         else {
-            $querystring = "SELECT SID, shopname, category, location_longitude, location_latitude
+            $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude
                             FROM shop
                             WHERE shopname LIKE :shopname 
                             AND category LIKE :category";

@@ -209,29 +209,25 @@
 </div>
 <script>
   function search_list(filter) {
-    if (jQuery.isEmptyObject(filter)) {
-      return;
-    }
-    else {
-      var querystring = "";
-      if (filter['shopname']) querystring += "shopname=" + filter['shopname'];
-      if (filter['distance'] == "Near") querystring += "&distance=near";
-      else if (filter['distance'] == "Medium") querystring += "&distance=medium";
-      else if (filter['distance'] == "Far") querystring += "&distance=far";
-      if (filter['price_floor']) querystring += "&price_floor=" + filter['price_floor'];
-      if (filter['price_ceiling']) querystring += "&price_ceiling=" + filter['price_ceiling'];
-      if (filter['meal']) querystring += "&meal=" + filter['meal'];
-      if (filter['category']) querystring += "&category=" + filter['category'];
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("result-list").innerHTML = this.responseText;
-        }
-      };
-      console.log(querystring);
-      xhttp.open("POST", "search.php", true);
-      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.send(querystring);
-    }
+    var querystring = "";
+    if (filter['shopname']) querystring += "shopname=" + filter['shopname'];
+    if (filter['distance'] == "Near") querystring += "&distance=near";
+    else if (filter['distance'] == "Medium") querystring += "&distance=medium";
+    else if (filter['distance'] == "Far") querystring += "&distance=far";
+    if (filter['price_floor']) querystring += "&price_floor=" + filter['price_floor'];
+    if (filter['price_ceiling']) querystring += "&price_ceiling=" + filter['price_ceiling'];
+    if (filter['meal']) querystring += "&meal=" + filter['meal'];
+    if (filter['category']) querystring += "&category=" + filter['category'];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("result-list").innerHTML = this.responseText;
+      }
+    };
+    console.log(querystring);
+    xhttp.open("POST", "search.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(querystring);
   }
+  search_list(filter);
 </script>

@@ -70,15 +70,15 @@
 						</div> -->
 						<div class="form-group">
 							<label for="name" class="sr-only">Name</label>
-							<input type="text" class="form-control" name="name" id="name" placeholder="Name" autocomplete="off">
+							<input type="text" class="form-control" name="name" id="name" placeholder="Name" autocomplete="off" >
 						</div>
 						<div class="form-group">
-							<label for="name" class="sr-only">phonenumber</label>
+							<label for="name" class="sr-only">phone number</label>
 							<input type="text" class="form-control" name="phonenumber" id="phonenumber" placeholder="PhoneNumber" autocomplete="off">
 						</div>
 						<div class="form-group">
-							<label for="Account" class="sr-only">Account</label>
-							<input type="text" class="form-control" name="account" id="Account" placeholder="Account" autocomplete="off">
+							<span id="check_name"><label for="Account" class="sr-only"></label></span>
+							<input type="text" class="form-control" name="account" id="Account" placeholder="Account" autocomplete="off" oninput="check_name(this.value);">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">Password</label>
@@ -124,7 +124,36 @@
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
-
+	<!-- AJAX -->
+	<script>
+        function check_name(uname) {
+            if (uname!="") {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    var message;
+                    if (this.readyState == 4 && this.status == 200) {
+                        switch(this.responseText) {
+                            case 'YES':
+                                message = '<label for="Account">The user name is available.</label>';
+                                break;
+                            case 'NO':
+                                message = '<label for="Account">The user name is not available.</label>';
+                                break;
+                            default:
+								message = this.responseText;
+                                // message='<label for="Account">Oops. There is something wrong.</label>';
+                                break;
+                        }
+                        document.getElementById("check_name").innerHTML = message;
+                    }
+                };
+                xhttp.open("POST", "check_name.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("uname=" + uname);
+            }
+            else document.getElementById("check_name").innerHTML = '<label for="Account" class="sr-only"></label>';
+        }
+    </script>
 	</body>
 </html>
 

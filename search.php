@@ -5,6 +5,7 @@
     $dbusername='db';
     $dbpassword='db';
     $UID=$_SESSION['UID'];
+    include('cal_distance.php');
     try {
         $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

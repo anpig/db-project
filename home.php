@@ -114,7 +114,7 @@
     </form>
   </div>
   <div class="row">
-    <div class="col-xs-8">
+    <div id="result-list" class="col-xs-8">
       <table class="table" style=" margin-top: 15px;">
         <thead>
           <tr>
@@ -124,7 +124,7 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody id="result-list">
+        <tbody>
           <?php
             $sql = $db->query("select * from user where UID=$UID");
             $row = $sql->fetch();

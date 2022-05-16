@@ -31,30 +31,39 @@
 
             $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
-            $sql = $db->prepare("SELECT phone_number FROM user WHERE UID=:UID");
-            $sql->execute(array('UID' => $UID));
-            $row = $sql->fetch();
-            $phonenumber = $row['phone_number'];
-            $sql = $db->prepare("
-                INSERT into shop (UID, shopname, location_longitude, location_latitude, phone_number, category)
-                values (:UID, :shopname, :location_longitude, :location_latitude, :phone_number, :category)
-            ");
-            $sql->execute(
-                array(
-                    'UID' => $UID,
-                    'shopname' => $shopname,
-                    'location_longitude' => $longitude,
-                    'location_latitude' => $latitude,
-                    'phone_number' => $phonenumber,
-                    'category' => $category
-                )
-            );
-            $sql = $db->prepare("UPDATE user SET role=1 WHERE `user`.`UID` = :UID");
-            $sql->execute(array('UID' => $UID));
-            throw new Exception("註冊成功");
+
+            $sql = $db->prepare("select * from shop where shopname=:shopname");
+            $sql->execute(array('shopname' => $shopname));
+
+            if ($sql->rowCount() == 0) {
+                $sql = $db->prepare("SELECT phone_number FROM user WHERE UID=:UID");
+                $sql->execute(array('UID' => $UID));
+                $row = $sql->fetch();
+                $phonenumber = $row['phone_number'];
+                $sql = $db->prepare("
+                    INSERT into shop (UID, shopname, location_longitude, location_latitude, phone_number, category)
+                    values (:UID, :shopname, :location_longitude, :location_latitude, :phone_number, :category)
+                ");
+                $sql->execute(
+                    array(
+                        'UID' => $UID,
+                        'shopname' => $shopname,
+                        'location_longitude' => $longitude,
+                        'location_latitude' => $latitude,
+                        'phone_number' => $phonenumber,
+                        'category' => $category
+                    )
+                );
+                $sql = $db->prepare("UPDATE user SET role=1 WHERE `user`.`UID` = :UID");
+                $sql->execute(array('UID' => $UID));
+                throw new Exception("註冊成功");
+            }
+            else {
+                throw new Exception("店名已被註冊");
+            }
         }
     } catch (Exception $e) {
         $msg=$e->getMessage();
-        echo "<script>alert(\"$msg\"); window.location.replace(\"nav.php\");</script>";
+        echo "<script>alert(\"$msg\"); window.location.replace(\"nav.php#shop\");</script>";
     }
 ?>

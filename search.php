@@ -32,12 +32,10 @@
         $user_latitude = $row['location_latitude']; $user_longitude = $row['location_longitude'];
 
         $somethingisset = false;
-        $querystring = "SELECT SID, shopname, category, location_longitude, location_latitude FROM shop";
+        $querystring = "SELECT SID, shopname, category, location_longitude, location_latitude FROM shop WHERE shopname LIKE :shopname";
         if (isset($_REQUEST['shopname'])) {
             if ($somethingisset) $querystring .= " AND ";
-            else $querystring .= " WHERE ";
             $shopname = "%" . $_REQUEST['shopname'] . "%";
-            $querystring .= "shopname LIKE :shopname";
             $somethingisset = true;
         }
         else $shopname = "%%";

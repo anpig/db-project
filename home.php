@@ -94,16 +94,6 @@
         <label class="control-label col-sm-1" for="Meal">Meal</label>
         <div class="col-sm-5">
           <input style="margin-left: 12px;" type="text" list="Meals" class="form-control" id="Meal" placeholder="Enter Meal" onchange="filter['meal'] = this.value;">
-          <datalist id="Meals">
-            <?php
-              $sql = $db->query("SELECT DISTINCT product_name FROM product");
-              $result = $sql->fetchAll();
-              foreach ($result as &$row) {
-                $product_name = $row['product_name'];
-                echo '<option value="' . $product_name . '">';
-              }
-            ?>
-          </datalist>
         </div>
       </div>
       <div class="form-group">
@@ -111,6 +101,14 @@
           <div class="col-sm-5">
             <input style="margin-left: 15px;" type="text" list="categorys" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
             <datalist id="categorys">
+              <?php
+                $sql = $db->query("SELECT DISTINCT category FROM shop");
+                $result = $sql->fetchAll();
+                foreach ($result as &$row) {
+                  $category = $row['category'];
+                  echo '<option value="' . $category . '">';
+                }
+              ?>
               <option value="fast food">
             </datalist>
           </div>

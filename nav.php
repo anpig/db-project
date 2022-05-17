@@ -48,10 +48,7 @@
           <li class="nav-item active"><a href="#home" data-toggle="tab">Home</a></li>
           <li class="nav-item"><a href="#shop" data-toggle="tab">Shop</a></li>
         </ul>
-        <div style="position: absolute; right: 25px;">
-          <a href="logout.php"><button class="btn btn-danger navbar-btn navbar-right">Log Out</button></a>
-          <div style="width=10%"></div>
-        </div>
+        <a style="position: absolute; right: 25px;" href="logout.php"><button class="btn btn-danger navbar-btn navbar-right">Log Out</button></a>
       </div>
     </div>
   </nav>

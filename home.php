@@ -70,7 +70,7 @@
       <div class="form-group">
         <label class="control-label col-sm-1" for="Shop">Shop</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" placeholder="Enter Shop name" oninput="filter['shopname'] = this.value;">
+          <input style="margin-left: 15px;" type="text" class="form-control" placeholder="Enter Shop name" oninput="filter['shopname'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="distance">Distance</label>
         <div class="col-sm-5">
@@ -85,11 +85,11 @@
       <div class="form-group">
         <label class="control-label col-sm-1" for="Price">Price</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" oninput="filter['price_floor'] = this.value;">
+          <input style="margin-left: 15px;" type="text" class="form-control" oninput="filter['price_floor'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="~">~</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" oninput="filter['price_ceiling'] = this.value;">
+          <input style="margin-left: 15px;" type="text" class="form-control" oninput="filter['price_ceiling'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="Meal">Meal</label>
         <div class="col-sm-5">
@@ -104,7 +104,7 @@
       <div class="form-group">
         <label class="control-label col-sm-1" for="category">Category</label>
           <div class="col-sm-5">
-            <input type="text" list="categorys" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
+            <input style="margin-left: 15px;" type="text" list="categorys" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
             <datalist id="categorys">
               <option value="fast food">
             </datalist>

@@ -29,7 +29,7 @@
         if (isset($_REQUEST['price_ceiling'])) {
             $price_ceiling = $_REQUEST['price_ceiling'];
         }
-        if (isset($_REQUEST['price']) || isset($_REQUEST['meal'])) {
+        if (isset($_REQUEST['price_floor']) || isset($_REQUEST['price_ceiling']) || isset($_REQUEST['meal'])) {
             $querystring = "SELECT DISTINCT SID, shopname, category, location_longitude, location_latitude
                             FROM shop NATURAL LEFT JOIN product
                             WHERE shopname LIKE :shopname 
@@ -61,10 +61,10 @@
             <table class="table" style=" margin-top: 15px;">
                 <thead>
                     <tr>
-                        <th scope="col">Shop Name</th>
-                        <th scope="col">Shop Category</th>
-                        <th scope="col">Distance</th>
-                        <th scope="col"></th>
+                        <th width="50%" scope="col">Shop Name</th>
+                        <th width="25%" scope="col">Shop Category</th>
+                        <th width="15%" scope="col">Distance</th>
+                        <th width="10%" scope="col"></th>
                     </tr>
                 </thead>
                 <tbody id="result-list">

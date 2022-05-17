@@ -123,7 +123,7 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="  col-xs-12">
-                                                <table class="table" style=" margin-top: 15px;">
+                                                <table class="table" style="margin-top: 15px; table-layout:fixed;">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Picture</th>

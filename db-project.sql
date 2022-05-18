@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-05-15 13:12:11
+-- 產生時間： 2022-05-18 06:19:13
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -130,17 +130,14 @@ ALTER TABLE `items`
 -- 資料表索引 `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`PID`),
-  ADD UNIQUE KEY `SID_product_name` (`SID`,`product_name`),
-  ADD UNIQUE KEY `picture` (`picture`) USING HASH;
+  ADD PRIMARY KEY (`PID`);
 
 --
 -- 資料表索引 `shop`
 --
 ALTER TABLE `shop`
   ADD PRIMARY KEY (`SID`),
-  ADD UNIQUE KEY `UID` (`UID`),
-  ADD UNIQUE KEY `phone_number` (`phone_number`) USING HASH;
+  ADD UNIQUE KEY `UID` (`UID`);
 
 --
 -- 資料表索引 `transaction`
@@ -153,8 +150,7 @@ ALTER TABLE `transaction`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`UID`),
-  ADD UNIQUE KEY `username` (`account`),
-  ADD UNIQUE KEY `phone_number` (`phone_number`) USING HASH;
+  ADD UNIQUE KEY `username` (`account`);
 
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)

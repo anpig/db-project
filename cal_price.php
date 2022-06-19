@@ -1,13 +1,18 @@
 <?php
     session_start();
+    if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
+        header('Location: .');
+        die();
+    }
     $dbservername='localhost';
     $dbname='db-project';
     $dbusername='db';
     $dbpassword='db';
     $SID=$_POST['SID'];
     $dist = $_POST['dist'];
+    $type = $_POST['select'];
     $delivery_fee = 0;
-    if ($_POST['select'] == "Delivery") {
+    if ($type == "Delivery") {
         $delivery_fee = intval($dist*10);
         if($delivery_fee < 10) $delivery_fee = 10;
     }
@@ -22,7 +27,7 @@
         }
         echo "<h3>Order</h3>";
         echo <<< EOT
-        <form action="test.php" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
+        <form action="check_out.php" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
         <table>
             <thead>
                 <tr>
@@ -38,7 +43,12 @@
         foreach ($result as &$row) {
             $PID = $row['PID'];
             $order_quantity = $_POST["$PID"];
-            if ($order_quantity == 0) continue;
+            if ($order_quantity == 0) {
+                echo <<< EOT
+                    <input type="hidden" name="$PID" value="$order_quantity">
+                EOT;
+                continue;
+            };
             $product_name = $row['product_name'];
             $price = $row['price'];
             $picture = $row['picture'];
@@ -49,8 +59,12 @@
                     <td>$product_name</td>
                     <td>$price</td>
                     <td>$order_quantity</td>
+                    <input type="hidden" name="$PID" value="$order_quantity">
                 </tr>
             EOT;
+        }
+        if($sub_total == 0) {
+            echo "<script>alert(\"請選擇商品\"); window.location.replace(\"nav.php\");</script>";
         }
         echo <<< EOT
             </tbody>
@@ -63,6 +77,11 @@
         Delivery fee : \$$delivery_fee <br>
         Total Price : \$$total <br>
         <div class="form-group">
+            <input type="hidden" name="SID" value="$SID">
+            <input type="hidden" name="total" value="$total">
+            <input type="hidden" name="dist" value="$dist">
+            <input type="hidden" name="type" value="$type">
+            <input type="hidden" name="sub_total" value="$sub_total">
             <input type="submit" value="Order" class="btn btn-primary">
         </div>
         </form>

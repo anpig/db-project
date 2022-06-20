@@ -28,10 +28,12 @@
             $row = $sql->fetch();
             
             $odd=$row['balance'];
+            $name = $row['name'];
             $new=$value+$odd;
 
             $sql = $db->prepare("UPDATE user SET balance=:new WHERE `user`.`UID` = :UID");
             $sql->execute(array('new' => $new, 'UID' => $UID));
+            $sql = $db->query("INSERT INTO `transaction` (`TID`, `UID`, `type`, `value`, `time`, `trader`) VALUES (NULL, '$UID', 'Recharge', '$value', current_timestamp(), '$name')");
             throw new Exception("ADDED Success!");
         }
     } catch (Exception $e) {

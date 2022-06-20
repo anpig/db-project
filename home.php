@@ -43,8 +43,8 @@
       <span>Wallet Balance: <?php echo $row['balance']; ?></span>
       <!-- Modal -->
       <button type="button " style="margin-left: 5px;" class=" btn btn-info " data-toggle="modal"
-        data-target="#myModal">Recharge</button>
-      <div class="modal fade" id="myModal"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        data-target="#recharge">Recharge</button>
+      <div class="modal fade" id="recharge"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog  modal-sm">
           <form action="edit_balance.php" method="post">
             <div class="modal-content">

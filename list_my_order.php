@@ -54,7 +54,7 @@
                     <td>$total_price</td>
                     <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail_$OID">Order Details</button></td>
             EOT;
-            if ($status == 'unfinished') {
+            if ($status == 'Unfinished') {
                 echo <<< EOT
                     <td>
                         <form action="cancel_order.php" method="post">

@@ -34,9 +34,9 @@
                                 <td>$product_name</td>
                                 <td>$price</td>
                                 <td>$quantity</td>
-                                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#$PID">Edit</button></td>
+                                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_$PID">Edit</button></td>
                                 <!-- Modal -->
-                                <div class="modal fade" id="$PID" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal fade" id="edit_$PID" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">

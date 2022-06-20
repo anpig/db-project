@@ -65,16 +65,16 @@
     </div>
   </div>
   <h3>Search</h3>
-  <div class=" row  col-xs-8">
+  <div class=" row  col-xs-12">
     <form class="form-horizontal">
       <div class="form-group">
         <label class="control-label col-sm-1" for="Shop">Shop</label>
         <div class="col-sm-5">
-          <input style="margin-left: 15px;" type="text" class="form-control" placeholder="Enter Shop name" oninput="filter['shopname'] = this.value;">
+          <input type="text" class="form-control" placeholder="Enter Shop name" oninput="filter['shopname'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="distance">Distance</label>
         <div class="col-sm-5">
-          <select style="margin-left: 12px;" class="form-control" onchange="filter['distance'] = this.value;">
+          <select class="form-control" onchange="filter['distance'] = this.value;">
             <option>All</option>
             <option>Near</option>
             <option>Medium </option>
@@ -85,21 +85,21 @@
       <div class="form-group">
         <label class="control-label col-sm-1" for="Price">Price</label>
         <div class="col-sm-2">
-          <input style="margin-left: 15px;" type="text" class="form-control" oninput="filter['price_floor'] = this.value;">
+          <input ype="text" class="form-control" oninput="filter['price_floor'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="~">~</label>
         <div class="col-sm-2">
-          <input style="margin-left: 15px;" type="text" class="form-control" oninput="filter['price_ceiling'] = this.value;">
+          <input type="text" class="form-control" oninput="filter['price_ceiling'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="Meal">Meal</label>
         <div class="col-sm-5">
-          <input style="margin-left: 12px;" type="text" list="Meals" class="form-control" id="Meal" placeholder="Enter Meal" onchange="filter['meal'] = this.value;">
+          <input type="text" list="Meals" class="form-control" id="Meal" placeholder="Enter Meal" onchange="filter['meal'] = this.value;">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-1" for="category">Category</label>
           <div class="col-sm-5">
-            <input style="margin-left: 15px;" type="text" list="categories" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
+            <input type="text" list="categories" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
             <datalist id="categories">
               <?php
                 $sql = $db->query("SELECT DISTINCT category FROM shop");
@@ -117,7 +117,7 @@
     </form>
   </div>
   <div class="row">
-    <div id="result-list" class="col-xs-8"></div>
+    <div id="result-list" class="col-xs-12"></div>
   </div>
 </div>
 <script>

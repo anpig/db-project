@@ -44,5 +44,5 @@
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(querystring);
   }
-  search_list(status_filter);
+  search_status(status_filter);
 </script>

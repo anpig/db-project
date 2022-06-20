@@ -1,12 +1,19 @@
+<script>status_filter2 = {};</script>
+<div id="shop_order" class="tab-pane fade">
+  <h3>Shop Orders</h3>
 <?php
   if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
     header('Location: .');
     die();
   }
-?>
-<script>status_filter2 = {};</script>
-<div id="shop_order" class="tab-pane fade">
-  <h3>Shop order</h3>
+  else {
+    $sql = $db->prepare("select role from user where UID=:UID");
+    $sql->execute(array('UID' => $UID));
+    $row = $sql->fetch();
+    if (!$row['role']) {
+      echo '<div>Please start a business first.</div></div>';
+    }
+    else echo <<< EOT
   <div class=" row  col-xs-8">
     <form class="form-horizontal">
       <div class="form-group">
@@ -46,3 +53,6 @@
   }
   search_status2(status_filter2);
 </script>
+EOT;
+}
+?>

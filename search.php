@@ -104,7 +104,7 @@
                     <td>$shopname</td>
                     <td>$category</td>
                     <td>$distanceWord</td>
-                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#openmenu-$SID">Open menu</button></td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#openmenu-$SID">Open Menu</button></td>
                 </tr>
             </tbody>
             EOT;
@@ -123,7 +123,7 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">Menu</h4>
                                     </div>
-                                <form action="cal_price.php" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
+                                <form action="cal_price.php" class="fh5co-form animate-box form-horizontal" data-animate-effect="fadeIn" method="post">
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="  col-xs-12">
@@ -139,39 +139,41 @@
                                                     </thead>
                                                     <tbody>
             EOT;
-                                                    $sql = $db->query("SELECT * FROM product WHERE SID=$SID");
-                                                    $shoprow = $sql->fetchAll();
-                                                    foreach ($shoprow as &$row) {
-                                                        $PID = $row['PID'];
-                                                        $product_name = $row['product_name'];
-                                                        $price = $row['price'];
-                                                        $quantity = $row['quantity'];
-                                                        $picture = $row['picture'];
-                                                        $picture_type = $row['picture_type'];
-                                                        echo '<tr><td><img style="max-width:100%; max-height:200px" src="data:'.$picture_type.';base64,' . $picture . '" alt="$product_name"/></td>';
-                                                        echo <<< EOT
-                                                                <td>$product_name</td>
-                                                                <td>$price</td>
-                                                                <td>$quantity</td>
-                                                                <td><input type="number" name="$PID" id="$PID" value=0 min=0 max="$quantity"></td>
-                                                            </tr>
-                                                        EOT;
-                                                    }
-                                                    echo <<< EOT
+            $sql = $db->query("SELECT * FROM product WHERE SID=$SID");
+            $shoprow = $sql->fetchAll();
+            foreach ($shoprow as &$row) {
+                $PID = $row['PID'];
+                $product_name = $row['product_name'];
+                $price = $row['price'];
+                $quantity = $row['quantity'];
+                $picture = $row['picture'];
+                $picture_type = $row['picture_type'];
+                echo '<tr><td><img style="max-width:100%; max-height:200px" src="data:'.$picture_type.';base64,' . $picture . '" alt="$product_name"/></td>';
+                echo <<< EOT
+                        <td>$product_name</td>
+                        <td>$price</td>
+                        <td>$quantity</td>
+                        <td><input type="number" name="$PID" id="$PID" value=0 min=0 max="$quantity"></td>
+                    </tr>
+                EOT;
+            }
+            echo <<< EOT
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                    </div>
-                                    <label class="control-label col-sm-1" for="type">Type</label>
-                                    <select name="select">
-                                        <option>Delivery</option>
-                                        <option>Pick-up</option>
-                                    </select>
-                                    <div class="form-group">
-                                        <input type="hidden" name="SID" value="$SID">
-                                        <input type="hidden" name="dist" value="$this_dist">
-                                        <input type="submit" value="Calculate the price" class="btn btn-primary">
+                                        <div class="row form-group">
+                                            <label class="control-label col-sm-1" for="type">Type</label>
+                                            <div class="col-sm-5">
+                                                <select class="form-control" name="select">
+                                                    <option>Delivery</option>
+                                                    <option>Pick-up</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="SID" value="$SID">
+                                            <input type="hidden" name="dist" value="$this_dist">
+                                            <input type="submit" value="Checkout" class="btn btn-primary">
+                                        </div>
                                     </div>
                                 </form>
                             </div>

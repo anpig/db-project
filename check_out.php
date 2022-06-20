@@ -24,6 +24,7 @@
     }
     if($total > $balance) {
         echo "<script>alert(\"訂購失敗：訂購金額 > 餘額\"); window.location.replace(\"nav.php\");</script>";
+        exit();
     }
     $sql = $db->query("INSERT INTO `orders` (`OID`, `UID`, `SID`, `status`, `create_time`, `finish_time`, `distance`, `total_price`, `type`) VALUES (NULL, '$UID', '$SID', 'unfinished', current_timestamp(), NULL, '$dist', '$total', '$type');");
     $sql = $db->query("SELECT LAST_INSERT_ID() as tem;");

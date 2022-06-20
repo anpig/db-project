@@ -19,8 +19,9 @@
                         <th width="15%" scope="col">End</th>
                         <th width="15%" scope="col">Shop Name</th>
                         <th width="15%" scope="col">Total Price</th>
-                        <th width="15%" scope="col">Order Details</th>
-                        <th width="15%" scope="col">Action</th>
+                        <th width="10%" scope="col">Order Details</th>
+                        <th width="5%" scope="col">Actions</th>
+                        <th width="10%" scope="col"></th>
                     </tr>
                 </thead>
             <tbody>
@@ -57,7 +58,7 @@
             if ($status == 'Unfinished') {
                 echo <<< EOT
                     <td>
-                        <form action="cancel_order.php" method="post">
+                        <form action="cancel_my_order.php" method="post">
                         <input type="hidden" name="OID" value="$OID">
                         <button type="submit" class="btn btn-danger">Cancel</button>
                         </form>

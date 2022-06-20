@@ -104,7 +104,7 @@
                     <td>$shopname</td>
                     <td>$category</td>
                     <td>$distanceWord</td>
-                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#$SID">Open menu</button></td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#openmenu-$SID">Open menu</button></td>
                 </tr>
             </tbody>
             EOT;
@@ -115,7 +115,7 @@
             echo <<< EOT
                 </table>
                     <!-- Modal -->
-                        <div class="modal fade" id=$SID  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id=openmenu-$SID  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">

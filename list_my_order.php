@@ -15,10 +15,10 @@
                     <tr>
                         <th width="5%" scope="col">OID</th>
                         <th width="10%" scope="col">Status</th>
-                        <th width="20%" scope="col">Start</th>
-                        <th width="20%" scope="col">End</th>
-                        <th width="10%" scope="col">Shop name</th>
-                        <th width="10%" scope="col">Total Price</th>
+                        <th width="15%" scope="col">Start</th>
+                        <th width="15%" scope="col">End</th>
+                        <th width="15%" scope="col">Shop Name</th>
+                        <th width="15%" scope="col">Total Price</th>
                         <th width="15%" scope="col">Order Details</th>
                         <th width="15%" scope="col">Action</th>
                     </tr>

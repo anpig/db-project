@@ -99,8 +99,8 @@
       <div class="form-group">
         <label class="control-label col-sm-1" for="category">Category</label>
           <div class="col-sm-5">
-            <input style="margin-left: 15px;" type="text" list="categorys" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
-            <datalist id="categorys">
+            <input style="margin-left: 15px;" type="text" list="categories" class="form-control" id="category" placeholder="Enter shop category" onchange="filter['category'] = this.value;">
+            <datalist id="categories">
               <?php
                 $sql = $db->query("SELECT DISTINCT category FROM shop");
                 $result = $sql->fetchAll();

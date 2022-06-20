@@ -6,8 +6,8 @@
 ?>
 <script>status_filter = {};</script>
 <div id="my_order" class="tab-pane fade">
-  <h3>My order</h3>
-  <div class=" row  col-xs-8">
+  <h3>My Order</h3>
+  <div class=" row  col-xs-12">
     <form class="form-horizontal">
       <div class="form-group">
         <label class="control-label col-sm-1" for="status">Status</label>
@@ -19,12 +19,12 @@
             <option>Cancel</option>
           </select>
         </div>
-      </div>
         <button type="button" style="margin-left: 18px;"class="btn btn-primary" onclick="search_status(status_filter); console.log(status_filter);">Search</button>
       </div>
     </form>
+  </div>
   <div class="row" class="tab-pane fade">
-    <div id="result-stutus" class="col-xs-8"></div>
+    <div id="result-status" class="col-xs-8"></div>
   </div>
 </div>
 <script>
@@ -36,7 +36,7 @@
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("result-stutus").innerHTML = this.responseText;
+        document.getElementById("result-status").innerHTML = this.responseText;
       }
     };
     console.log(querystring);

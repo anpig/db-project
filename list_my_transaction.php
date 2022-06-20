@@ -24,10 +24,10 @@
         EOT;
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
-            $sql = $db->query("select * from transaction where UID = '$UID' and type = '$action'");
+            $sql = $db->query("SELECT * FROM transaction WHERE UID = '$UID' AND type = '$action' ORDER BY TID DESC");
         }
         else {
-            $sql = $db->query("select * from transaction where UID = '$UID'");
+            $sql = $db->query("SELECT * FROM transaction WHERE UID = '$UID' ORDER BY TID DESC");
         }
         $result = $sql->fetchAll();
         foreach ($result as &$row) {

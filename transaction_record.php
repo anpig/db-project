@@ -6,23 +6,23 @@
 ?>
 <script>action_filter = {};</script>
 <div id="transaction_record" class="tab-pane fade">
-  <h3>Transaction Record</h3>
-  <div class=" row  col-xs-8">
+  <h3>Transaction Records</h3>
+  <div class="row col-xs-8">
     <form class="form-horizontal">
       <div class="form-group">
         <label class="control-label col-sm-1" for="action">Action</label>
-        <div class="col-sm-5">
-          <select style="margin-left: 12px;" class="form-control" onchange="action_filter['action'] = this.value;">
+        <div class="col-sm-3">
+          <select class="form-control" onchange="action_filter['action'] = this.value;">
             <option>All</option>
             <option>Payment</option>
             <option>Receive</option>
             <option>Recharge</option>
           </select>
         </div>
-      </div>
-        <button type="button" style="margin-left: 18px;"class="btn btn-primary" onclick="search_action(action_filter); console.log(action_filter);">Search</button>
+        <button type="button" class="btn btn-primary" onclick="search_action(action_filter); console.log(action_filter);">Search</button>  
       </div>
     </form>
+  </div>
   <div class="row" class="tab-pane fade">
     <div id="result-action" class="col-xs-8"></div>
   </div>

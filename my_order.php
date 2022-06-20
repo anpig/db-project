@@ -6,20 +6,20 @@
 ?>
 <script>status_filter = {};</script>
 <div id="my_order" class="tab-pane fade">
-  <h3>My Order</h3>
-  <div class=" row  col-xs-12">
+  <h3>My Orders</h3>
+  <div class=" row col-xs-8">
     <form class="form-horizontal">
       <div class="form-group">
         <label class="control-label col-sm-1" for="status">Status</label>
-        <div class="col-sm-5">
-          <select style="margin-left: 12px;" class="form-control" onchange="status_filter['status'] = this.value;">
+        <div class="col-sm-3">
+          <select class="form-control" onchange="status_filter['status'] = this.value;">
             <option>All</option>
             <option>Finished</option>
             <option>Unfinished</option>
             <option>Cancel</option>
           </select>
         </div>
-        <button type="button" style="margin-left: 18px;"class="btn btn-primary" onclick="search_status(status_filter); console.log(status_filter);">Search</button>
+        <button type="button" class="btn btn-primary" onclick="search_status(status_filter); console.log(status_filter);">Search</button>
       </div>
     </form>
   </div>

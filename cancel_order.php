@@ -63,4 +63,5 @@
     $new = $old - $sub_total;
     $sql = $db->query("UPDATE user SET balance = $new WHERE `user`.`UID` = $shop_owner_UID");
 
+    echo "<script>alert(\"取消成功\"); window.location.replace(\"nav.php#my_order\");</script>";
 ?>

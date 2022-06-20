@@ -104,7 +104,7 @@
                     <td>$shopname</td>
                     <td>$category</td>
                     <td>$distanceWord</td>
-                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#openmenu-$SID">Open menu</button></td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#openmenu-$SID">Open Menu</button></td>
                 </tr>
             </tbody>
             EOT;
@@ -172,7 +172,7 @@
                                             </div>
                                             <input type="hidden" name="SID" value="$SID">
                                             <input type="hidden" name="dist" value="$this_dist">
-                                            <input type="submit" value="Calculate the price" class="btn btn-primary">
+                                            <input type="submit" value="Checkout" class="btn btn-primary">
                                         </div>
                                     </div>
                                 </form>

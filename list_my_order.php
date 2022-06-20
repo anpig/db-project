@@ -37,7 +37,7 @@
         foreach ($result as &$row) {
             $SID = $row['SID'];
             $OID = $row['OID'];
-            $status = $row['status']; 
+            $status = ucfirst($row['status']); 
             $start = $row['create_time'];
             $end = $row['finish_time'];
             $tem = $db->query("select shopname from shop where SID = '$SID'");
@@ -52,7 +52,7 @@
                     <td>$end</td>
                     <td>$shopname</td>
                     <td>$total_price</td>
-                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail_$OID">order details</button></td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail_$OID">Order Details</button></td>
             EOT;
             if ($status == 'unfinished') {
                 echo <<< EOT
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="  col-xs-12">
+                                            <div class="col-xs-12">
                                                 <table class="table" style="margin-top: 15px; table-layout:fixed;">
                                                     <thead>
                                                         <tr>
@@ -124,12 +124,18 @@
                                                     echo <<< EOT
                                                     </tbody>
                                                 </table>
-                                                <br>
-                                                Subtotal:$sub_total
-                                                <br>
-                                                Delivery Fee:$delivery_fee
-                                                <br>
-                                                Total Price:$total_price
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <span style="float: left">Subtotal:</span>
+                                                <span style="float: right">$sub_total</span>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <span style="float: left">Delivery Fee:</span>
+                                                <span style="float: right">$delivery_fee</span>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <span style="float: left; font-weight: bold">Total Price:</span>
+                                                <span style="float: right; font-weight: bold">$total_price</span>
                                             </div>
                                         </div>
                                     </div>

@@ -47,6 +47,7 @@
         <ul class="nav navbar-nav">
           <li class="nav-item active"><a href="#home" data-toggle="tab">Home</a></li>
           <li class="nav-item"><a href="#shop" data-toggle="tab">Shop</a></li>
+          <li class="nav-item"><a href="#my_order" data-toggle="tab">My Order</a></li>
         </ul>
         <a style="position: absolute; right: 25px;" href="logout.php"><button class="btn btn-danger navbar-btn navbar-right">Log Out</button></a>
       </div>
@@ -57,6 +58,7 @@
     <div class="tab-content">
       <?php include('home.php'); ?>
       <?php include('shop.php'); ?>
+      <?php include('my_order.php'); ?>
     </div>
   </div>
   <!-- Option 1: Bootstrap Bundle with Popper -->

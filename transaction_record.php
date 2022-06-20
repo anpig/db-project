@@ -24,7 +24,7 @@
     </form>
   </div>
   <div class="row" class="tab-pane fade">
-    <div id="result-action" class="col-xs-8"></div>
+    <div id="result-action" class="col-xs-12"></div>
   </div>
 </div>
 <script>

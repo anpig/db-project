@@ -23,7 +23,7 @@
         $balance = $row['balance'];
     }
     if($total > $balance) {
-        echo "<script>alert(\"訂購金額 > 餘額\"); window.location.replace(\"nav.php\");</script>";
+        echo "<script>alert(\"訂購失敗：訂購金額 > 餘額\"); window.location.replace(\"nav.php\");</script>";
     }
     $sql = $db->query("INSERT INTO `orders` (`OID`, `UID`, `SID`, `status`, `create_time`, `finish_time`, `distance`, `total_price`, `type`) VALUES (NULL, '$UID', '$SID', 'unfinished', current_timestamp(), NULL, '$dist', '$total', '$type');");
     $sql = $db->query("SELECT LAST_INSERT_ID() as tem;");
@@ -35,10 +35,13 @@
     $sql = $db->query("select * from product where SID = $SID");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
+        $old_quantiy = $row['quantity'];
         $PID = $row['PID'];
         $order_quantity = $_POST["$PID"];
         if ($order_quantity == 0) continue;
+        $new_quantity = $old_quantiy - $order_quantity;
         $sql = $db->query("INSERT INTO `items` (`OID`, `PID`, `quantity`) VALUES ('$OID', '$PID', '$order_quantity')");
+        $sql = $db->query("UPDATE `product` SET `quantity` = '$new_quantity' WHERE `product`.`PID` = $PID;");
     }
 
     $sql = $db->query("select * from shop where SID = $SID");
@@ -55,8 +58,8 @@
     }
     
     $neg_total = -1*$total;
-    $sql = $db->query("INSERT INTO `transaction` (`TID`, `UID`, `type`, `value`, `time`, `trader`) VALUES (NULL, '$shop_owner_UID', 'Income', '$sub_total', current_timestamp(), '$client_name')");
-    $sql = $db->query("INSERT INTO `transaction` (`TID`, `UID`, `type`, `value`, `time`, `trader`) VALUES (NULL, '$UID', 'Expense', '$neg_total', current_timestamp(), '$shop_name')");
+    $sql = $db->query("INSERT INTO `transaction` (`TID`, `UID`, `type`, `value`, `time`, `trader`) VALUES (NULL, '$shop_owner_UID', 'Receive', '$sub_total', current_timestamp(), '$client_name')");
+    $sql = $db->query("INSERT INTO `transaction` (`TID`, `UID`, `type`, `value`, `time`, `trader`) VALUES (NULL, '$UID', 'Payment', '$neg_total', current_timestamp(), '$shop_name')");
     
     $sql = $db->query("select * from user where UID = $UID");
     $result = $sql->fetchAll();
@@ -74,4 +77,5 @@
     $new = $old + $sub_total;
     $sql = $db->query("UPDATE user SET balance = $new WHERE `user`.`UID` = $shop_owner_UID");
 
+    echo "<script>alert(\"訂購成功\"); window.location.replace(\"nav.php\");</script>";
 ?>

@@ -5,7 +5,7 @@
     }
 ?>
 <div class="row">
-    <div class="  col-xs-8">
+    <div class="  col-xs-12">
         <table class="table" style="margin-top: 15px;">
             <thead>
                 <tr>
@@ -13,7 +13,7 @@
                     <th width="20%" scope="col">Meal Name</th>
                     <th width="10%" scope="col">Price</th>
                     <th width="10%" scope="col">Quantity</th>
-                    <th width="5%" scope="col"></th>
+                    <th width="5%" scope="col">Actions</th>
                     <th width="5%" scope="col"></th>
                 </tr>
             </thead>

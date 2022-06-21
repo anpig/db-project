@@ -26,7 +26,7 @@
             $product_existence = $tmp['listed'];
             $product_quantity = $tmp['quantity'];
             if ($order_quantity > $product_quantity) {
-                echo "<script>alert(\"$order_quantity > $product_quantity 有產品庫存不足\"); window.location.replace(\"nav.php#shop_order\");</script>";
+                echo "<script>alert(\"有產品庫存不足\"); window.location.replace(\"nav.php#shop_order\");</script>";
                 exit();
             }
             else if (!$product_existence) {

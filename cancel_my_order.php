@@ -15,6 +15,10 @@
         echo "<script>alert(\"該訂單已完成，無法取消\"); window.location.replace(\"nav.php#my_order\");</script>";
         exit();
     }
+    else if($status == 'canceled') {
+        echo "<script>alert(\"該訂單已被店家取消\"); window.location.replace(\"nav.php#my_order\");</script>";
+        exit();
+    }
 
     $sql = $db->query("UPDATE `orders` SET `status` = 'canceled', `finish_time` = current_timestamp() where `orders`.`OID` = '$OID'");
     

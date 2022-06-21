@@ -12,10 +12,10 @@
     $dbusername='db';
     $dbpassword='db';
     try {
-        if (empty($_POST['value'])) {
+        if (!isset($_POST['value'])) {
             throw new Exception('空白欄位');
         }
-        else if (!is_numeric($_POST['value']) || $_POST['value'] < 0 ) {
+        else if (!ctype_digit($_POST['value']) || $_POST['value'] < 0 ) {
             throw new Exception("輸入格式不對");
         }
         else {

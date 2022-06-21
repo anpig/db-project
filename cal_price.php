@@ -70,7 +70,7 @@
     try {
         $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
-        $sql = $db->query("select * from product where SID = $SID");
+        $sql = $db->query("SELECT * FROM product WHERE SID = $SID AND listed=1");
         $result = $sql->fetchAll();
         if ($sql->rowCount() == 0) {
             echo "<script>alert(\"該店家沒有商品\"); window.location.replace(\"nav.php\");</script>";

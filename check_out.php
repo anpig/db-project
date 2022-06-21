@@ -30,7 +30,8 @@
 
     $sql = $db->query("SELECT * FROM product WHERE SID = $SID");
     $result = $sql->fetchAll();
-    $querystrings = array();
+    $querystrings1 = array();
+    $querystrings2 = array();
     foreach ($result as &$row) {
         $old_quantity = $row['quantity'];
         $PID = $row['PID'];
@@ -46,8 +47,8 @@
             echo "<script>alert(\"訂購失敗：商品剩餘數量不足\"); window.location.replace(\"nav.php\");</script>";
             exit();
         }
-        array_push($querystrings, "INSERT INTO `items` (`OID`, `PID`, `quantity`) VALUES (:OID, '$PID', '$order_quantity')");
-        array_push($querystrings, "UPDATE `product` SET `quantity` = '$new_quantity' WHERE `product`.`PID` = $PID");
+        array_push($querystrings1, "INSERT INTO `items` (`OID`, `PID`, `quantity`) VALUES (:OID, '$PID', '$order_quantity')");
+        array_push($querystrings2, "UPDATE `product` SET `quantity` = '$new_quantity' WHERE `product`.`PID` = $PID");
     }
 
     // get shop name and owner UID
@@ -92,7 +93,11 @@
     $result = $sql->fetchAll();
     $OID = $db->lastInsertId();
     
-    foreach ($querystrings as $sqlcmd) {
+    foreach ($querystrings1 as $sqlcmd) {
+        $sql = $db->query($sqlcmd);
+    }
+
+    foreach ($querystrings2 as $sqlcmd) {
         $sql = $db->prepare($sqlcmd);
         $sql->execute(array('OID' => $OID));
     }

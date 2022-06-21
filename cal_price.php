@@ -151,10 +151,10 @@
         EOT;
     }
     catch (Exception $e) {
-        $msg=$e->getMessage();
-        session_unset();
-        session_destroy();
-        echo "<script>alert(\"$msg\"); window.location.replace(\"nav.php\");</script>";
+      $msg=$e->getMessage();
+      session_unset();
+      session_destroy();
+      echo "<script>alert(\"$msg\"); window.location.replace(\"nav.php\");</script>";
     }
 ?>
 

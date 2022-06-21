@@ -6,6 +6,16 @@
     $OID = $_POST['OID'];
     $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
+
+    $sql = $db->query("SELECT * FROM orders where `orders`.`OID` = '$OID'");
+
+    $result = $sql->fetch();
+    $status = $result['status'];
+    if($status == 'finished') {
+        echo "<script>alert(\"該訂單已完成，無法取消\"); window.location.replace(\"nav.php#my_order\");</script>";
+        exit();
+    }
+
     $sql = $db->query("UPDATE `orders` SET `status` = 'canceled', `finish_time` = current_timestamp() where `orders`.`OID` = '$OID'");
     
     $sql = $db->query("SELECT * FROM orders where `orders`.`OID` = '$OID'");

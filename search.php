@@ -62,9 +62,9 @@
             <table class="table" style="margin-top: 15px; table-layout:fixed;">
                 <thead>
                     <tr>
-                        <th width="50%" scope="col">Shop Name</th>
+                        <th width="30%" scope="col">Shop Name</th>
                         <th width="30%" scope="col">Shop Category</th>
-                        <th width="10%" scope="col">Distance</th>
+                        <th width="30%" scope="col">Distance</th>
                         <th width="10%" scope="col"></th>
                     </tr>
                 </thead>

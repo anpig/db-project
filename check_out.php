@@ -17,7 +17,7 @@
 
     $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
-    $sql = $db->query("select balance from user where UID = $UID");
+    $sql = $db->query("SELECT balance FROM user WHERE UID = $UID");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
         $balance = $row['balance'];
@@ -27,13 +27,13 @@
         exit();
     }
     $sql = $db->query("INSERT INTO `orders` (`OID`, `UID`, `SID`, `status`, `create_time`, `finish_time`, `distance`, `total_price`, `type`) VALUES (NULL, '$UID', '$SID', 'unfinished', current_timestamp(), NULL, '$dist', '$total', '$type');");
-    $sql = $db->query("SELECT LAST_INSERT_ID() as tem;");
+    $sql = $db->query("SELECT LAST_INSERT_ID() AS tem;");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
         $OID = $row['tem'];
     }
 
-    $sql = $db->query("select * from product where SID = $SID");
+    $sql = $db->query("SELECT * FROM product WHERE SID = $SID");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
         $old_quantiy = $row['quantity'];
@@ -45,14 +45,14 @@
         $sql = $db->query("UPDATE `product` SET `quantity` = '$new_quantity' WHERE `product`.`PID` = $PID;");
     }
 
-    $sql = $db->query("select * from shop where SID = $SID");
+    $sql = $db->query("SELECT * FROM shop WHERE SID = $SID");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
         $shop_name = $row['shopname'];
         $shop_owner_UID = $row['UID'];
     }
 
-    $sql = $db->query("select name from user where UID = $UID");
+    $sql = $db->query("SELECT name FROM user WHERE UID = $UID");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
         $client_name = $row['name'];
@@ -62,21 +62,21 @@
     $sql = $db->query("INSERT INTO `transaction` (`TID`, `UID`, `type`, `value`, `time`, `trader`) VALUES (NULL, '$shop_owner_UID', 'Receive', '$sub_total', current_timestamp(), '$client_name')");
     $sql = $db->query("INSERT INTO `transaction` (`TID`, `UID`, `type`, `value`, `time`, `trader`) VALUES (NULL, '$UID', 'Payment', '$neg_total', current_timestamp(), '$shop_name')");
     
-    $sql = $db->query("select * from user where UID = $UID");
+    $sql = $db->query("SELECT * FROM user WHERE UID = $UID");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
         $old = $row['balance'];
     }
     $new = $old - $total;
-    $sql = $db->query("UPDATE user SET balance = $new WHERE `user`.`UID` = $UID");
+    $sql = $db->query("UPDATE user SET balance=$new WHERE `user`.`UID`=$UID");
 
-    $sql = $db->query("select * from user where UID = $shop_owner_UID");
+    $sql = $db->query("SELECT * FROM user WHERE UID=$shop_owner_UID");
     $result = $sql->fetchAll();
     foreach ($result as &$row) {
         $old = $row['balance'];
     }
     $new = $old + $sub_total;
-    $sql = $db->query("UPDATE user SET balance = $new WHERE `user`.`UID` = $shop_owner_UID");
+    $sql = $db->query("UPDATE user SET balance=$new WHERE `user`.`UID`=$shop_owner_UID");
 
     echo "<script>alert(\"訂購成功\"); window.location.replace(\"nav.php\");</script>";
 ?>

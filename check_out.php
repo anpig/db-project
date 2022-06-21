@@ -34,7 +34,7 @@
     foreach ($result as &$row) {
         $old_quantity = $row['quantity'];
         $PID = $row['PID'];
-        $listed = $row['listed']
+        $listed = $row['listed'];
         $order_quantity = $_POST["$PID"];
         if ($order_quantity == 0) continue;
         if (!$listed) {

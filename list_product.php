@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 <?php
-                    $sql = $db->query("SELECT * FROM product WHERE SID=(SELECT SID FROM shop WHERE UID=$UID)");
+                    $sql = $db->query("SELECT * FROM product WHERE SID=(SELECT SID FROM shop WHERE UID=$UID) AND listed=1");
                     $result = $sql->fetchAll();
                     
                     foreach ($result as &$row) {

@@ -85,7 +85,7 @@
       <div class="form-group">
         <label class="control-label col-sm-1" for="Price">Price</label>
         <div class="col-sm-2">
-          <input ype="text" class="form-control" oninput="filter['price_floor'] = this.value;">
+          <input type="text" class="form-control" oninput="filter['price_floor'] = this.value;">
         </div>
         <label class="control-label col-sm-1" for="~">~</label>
         <div class="col-sm-2">

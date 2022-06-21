@@ -28,10 +28,10 @@
         EOT;
         if (isset($_REQUEST['status'])) {
             $status = $_REQUEST['status'];
-            $sql = $db->query("select * from orders where UID = '$UID' and status = '$status'");
+            $sql = $db->query("SELECT * FROM orders WHERE UID = '$UID' and status = '$status' ORDER BY OID DESC");
         }
         else {
-            $sql = $db->query("select * from orders where UID = '$UID'");
+            $sql = $db->query("SELECT * FROM orders WHERE UID = '$UID' ORDER BY OID DESC");
         }
         $result = $sql->fetchAll();
         $OID_arr = array();

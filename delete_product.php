@@ -14,8 +14,7 @@
   try { 
     $db = new PDO("mysql:host=$dbservername;dbname=$dbname", $dbusername, $dbpassword); // connect to db
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // set the PDO error mode to exception
-
-    $sql = $db->prepare("DELETE FROM `product` WHERE `product`.`PID` = :PID");
+    $sql = $db->prepare("UPDATE `product` SET listed=0 WHERE `product`.`PID` = :PID");
     $sql->execute(array('PID' => $PID));
     throw new Exception("DELETE Success!");
     header('Location: nav.php#shop');

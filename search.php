@@ -125,21 +125,21 @@
                                     </div>
                                 <form action="cal_price.php" class="fh5co-form animate-box form-horizontal" data-animate-effect="fadeIn" method="post">
                                     <div class="modal-body">
-                                        <div class="row">
-                                            <div class="  col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-xs-12">
                                                 <table class="table" style="margin-top: 15px; table-layout:fixed;">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Picture</th>
-                                                            <th scope="col">Meal Name</th>
-                                                            <th scope="col">Price</th>
-                                                            <th scope="col">Quantity</th>
-                                                            <th scope="col">Order</th>
+                                                            <th width="25%" scope="col">Picture</th>
+                                                            <th width="20%" scope="col">Meal Name</th>
+                                                            <th width="10%" scope="col">Price</th>
+                                                            <th width="15%" scope="col">Quantity</th>
+                                                            <th width="10%" scope="col">Order</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
             EOT;
-            $sql = $db->query("SELECT * FROM product WHERE SID=$SID");
+            $sql = $db->query("SELECT * FROM product WHERE SID=$SID AND listed=1");
             $shoprow = $sql->fetchAll();
             foreach ($shoprow as &$row) {
                 $PID = $row['PID'];
@@ -153,7 +153,7 @@
                         <td>$product_name</td>
                         <td>$price</td>
                         <td>$quantity</td>
-                        <td><input type="number" name="$PID" id="$PID" value=0 min=0 max="$quantity"></td>
+                        <td><input class="form-control" type="number" name="$PID" id="$PID" value=0 min=0 max="$quantity"></td>
                     </tr>
                 EOT;
             }
@@ -161,8 +161,6 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
-                                        <div class="row form-group">
                                             <label class="control-label col-sm-1" for="type">Type</label>
                                             <div class="col-sm-5">
                                                 <select class="form-control" name="select">

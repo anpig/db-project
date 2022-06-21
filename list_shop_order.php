@@ -30,10 +30,10 @@
         EOT;
         if (isset($_REQUEST['status2'])) {
             $status = $_REQUEST['status2'];
-            $sql = $db->query("select * from orders where SID = '$SID' and status = '$status'");
+            $sql = $db->query("SELECT * FROM orders WHERE SID = '$SID' AND status = '$status' ORDER BY OID DESC");
         }
         else {
-            $sql = $db->query("select * from orders where SID = '$SID'");
+            $sql = $db->query("SELECT * FROM orders WHERE SID = '$SID' ORDER BY OID DESC");
         }
         $result = $sql->fetchAll();
         $OID_arr = array();
@@ -104,7 +104,7 @@
                                                     </thead>
                                                     <tbody>
             EOT;
-            $tem = $db->query("select * from orders where OID = '$OID'");
+            $tem = $db->query("SELECT * FROM orders WHERE OID='$OID'");
             $tem1 = $tem->fetch();
             $total_price = $tem1['total_price'];
 

@@ -94,12 +94,12 @@
     $OID = $db->lastInsertId();
     
     foreach ($querystrings1 as $sqlcmd) {
-        $sql = $db->query($sqlcmd);
+        $sql = $db->prepare($sqlcmd);
+        $sql->execute(array('OID' => $OID));
     }
 
     foreach ($querystrings2 as $sqlcmd) {
-        $sql = $db->prepare($sqlcmd);
-        $sql->execute(array('OID' => $OID));
+        $sql = $db->query($sqlcmd);
     }
 
     echo "<script>alert(\"訂購成功\"); window.location.replace(\"nav.php\");</script>";

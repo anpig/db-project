@@ -136,11 +136,11 @@
                                         </div>
                                         <div class="col-xs-12">
                                             <span style="float: left">Subtotal:</span>
-                                            <span style="float: right">\$$sub_total</span>
+                                            <span style="float: right">$sub_total</span>
                                         </div>
                                         <div class="col-xs-12">
                                             <span style="float: left">Delivery Fee:</span>
-                                            <span style="float: right">\$$delivery_fee</span>
+                                            <span style="float: right">$delivery_fee</span>
                                         </div>
                                         <div class="col-xs-12">
                                             <span style="float: left; font-weight: bold">Total Price:</span>

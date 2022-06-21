@@ -136,7 +136,7 @@
             </div>
             <div class="col-xs-12">
               <span style="float: left; font-weight: bold">Total Price:</span>
-              <span style="float: right; font-weight: bold">$total</span>
+              <span style="float: right; font-weight: bold">\$$total</span>
             </div>
             <input type="hidden" name="SID" value="$SID">
             <input type="hidden" name="total" value="$total">

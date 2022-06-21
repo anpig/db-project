@@ -46,11 +46,8 @@
             echo "<script>alert(\"訂購失敗：商品剩餘數量不足\"); window.location.replace(\"nav.php\");</script>";
             exit();
         }
-        array_push($querystrings, "INSERT INTO `items` (`OID`, `PID`, `quantity`) VALUES ('$OID', '$PID', '$order_quantity')");
+        array_push($querystrings, "INSERT INTO `items` (`OID`, `PID`, `quantity`) VALUES (:OID, '$PID', '$order_quantity')");
         array_push($querystrings, "UPDATE `product` SET `quantity` = '$new_quantity' WHERE `product`.`PID` = $PID");
-    }
-    foreach ($querystrings as $sqlcmd) {
-        $db->query($sqlcmd);
     }
 
     // get shop name and owner UID
@@ -94,5 +91,11 @@
                        VALUES (NULL, '$UID', '$SID', 'unfinished', current_timestamp(), NULL, '$dist', '$total', '$type')");
     $result = $sql->fetchAll();
     $OID = $db->lastInsertId();
+    
+    foreach ($querystrings as $sqlcmd) {
+        $sql = $db->prepare($sqlcmd);
+        $sql->execute(array('OID' => $OID));
+    }
+
     echo "<script>alert(\"訂購成功\"); window.location.replace(\"nav.php\");</script>";
 ?>

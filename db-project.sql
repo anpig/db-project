@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-05-18 06:19:13
+-- 產生時間： 2022-06-21 10:15:15
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 7.4.29
 
@@ -44,7 +44,7 @@ CREATE TABLE `orders` (
   `UID` int(32) NOT NULL,
   `SID` int(32) NOT NULL,
   `status` varchar(16) NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `finish_time` timestamp NULL DEFAULT NULL,
   `distance` double NOT NULL,
   `total_price` int(32) NOT NULL,
@@ -64,7 +64,8 @@ CREATE TABLE `product` (
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `picture` mediumblob NOT NULL,
-  `picture_type` varchar(32) NOT NULL
+  `picture_type` varchar(32) NOT NULL,
+  `listed` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -94,7 +95,8 @@ CREATE TABLE `transaction` (
   `UID` int(11) NOT NULL,
   `type` varchar(16) NOT NULL,
   `value` int(11) NOT NULL,
-  `time` timestamp NULL DEFAULT NULL
+  `time` timestamp NULL DEFAULT NULL,
+  `trader` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -127,6 +129,12 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`OID`,`PID`);
 
 --
+-- 資料表索引 `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`OID`);
+
+--
 -- 資料表索引 `product`
 --
 ALTER TABLE `product`
@@ -155,6 +163,12 @@ ALTER TABLE `user`
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `OID` int(32) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product`

@@ -145,6 +145,7 @@
             <input type="hidden" name="sub_total" value="$sub_total">
             <div>
               <input style="width: 100%; margin-top: 15px" type="submit" value="Order" class="btn btn-primary">
+              <a href="nav.php#home"><input style="width: 100%; margin-top: 15px" type="button" value="Cancel" class="btn btn-danger"></a>
             </div>
           </div>
         </form>

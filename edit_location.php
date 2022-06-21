@@ -12,10 +12,10 @@
     $dbusername='db';
     $dbpassword='db';
     try {
-        if (empty($_POST['latitude']) || empty($_POST['longitude'])) {
+        if (!isset($_POST['latitude']) || !isset($_POST['longitude'])) {
             $err_message="";
-            if (empty($_POST['latitude'])) $err_message=$err_message."LATITUDE".'\n';
-            if (empty($_POST['longitude'])) $err_message=$err_message."LONGTITUDE".'\n'; 
+            if (!isset($_POST['latitude'])) $err_message=$err_message."LATITUDE".'\n';
+            if (!isset($_POST['longitude'])) $err_message=$err_message."LONGTITUDE".'\n'; 
             throw new Exception('空白欄位：'.'\n'."$err_message");
         }
         else if (!is_numeric($_POST['latitude']) || !is_numeric($_POST['longitude'])) {
